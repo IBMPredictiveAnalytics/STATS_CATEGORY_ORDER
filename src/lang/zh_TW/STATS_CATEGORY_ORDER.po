@@ -1,0 +1,174 @@
+#/***********************************************************************
+# * Licensed Materials - Property of IBM 
+# *
+# * IBM SPSS Products: Statistics Common
+# *
+# * (C) Copyright IBM Corp. 1989, 2014
+# *
+# * US Government Users Restricted Rights - Use, duplication or disclosure
+# * restricted by GSA ADP Schedule Contract with IBM Corp. 
+# ************************************************************************/
+
+# NLS_ENCODING=UTF-8
+# IBMUPYTH
+
+
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2014-11-27 16:39+China Standard Time\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: STATS_CATEGORY_ORDER.py:131
+msgid "Either a  prefix or a set of macro or MR set names must be specified"
+msgstr ""
+"必須指定字首或一組巨集或 MR 集名稱"
+
+#: STATS_CATEGORY_ORDER.py:135
+msgid "The number of macro or MR set names specified is different from the number of items"
+msgstr ""
+"指定的巨集或 MR 集名稱數目與項目數目不同"
+
+#: STATS_CATEGORY_ORDER.py:146
+msgid "Items to process must be either all numeric or all string"
+msgstr ""
+"要處理的項目必須全部是數值或全部是字串"
+
+#: STATS_CATEGORY_ORDER.py:151
+msgid "A nonnumeric special value was given for numeric variables"
+msgstr ""
+"已為數值變數提供非數值特殊值"
+
+#: STATS_CATEGORY_ORDER.py:168
+msgid "Name"
+msgstr ""
+"名稱"
+
+#: STATS_CATEGORY_ORDER.py:169
+msgid "Definition"
+msgstr ""
+"定義"
+
+#: STATS_CATEGORY_ORDER.py:184
+msgid "ITEMS and NAMES cannot be used with COUNTORDERING specifications."
+msgstr ""
+"ITEMS 及 NAMES 無法與 COUNTORDERING 規格搭配使用。"
+
+#: STATS_CATEGORY_ORDER.py:186
+msgid "Values to count must and a macroname must be specified when using COUNTORDERING specifications."
+msgstr ""
+"使用 COUNTORDERING 規格時，必須指定要計數的值及巨集名稱。"
+
+#: STATS_CATEGORY_ORDER.py:241
+msgid "The weight variable cannot be included as a variable."
+msgstr ""
+"不能併入加權變數作為變數。"
+
+#: STATS_CATEGORY_ORDER.py:316
+msgid "The specified set is a multiple category set.  Only multiple dichotomy sets can be used: %s"
+msgstr ""
+"指定的集是多重種類集。只能使用多重二分集：%s"
+
+#: STATS_CATEGORY_ORDER.py:319
+msgid "The weight variable cannot be included in an MR set."
+msgstr ""
+"加權變數不能併入 MR 集中。"
+
+#: STATS_CATEGORY_ORDER.py:376
+msgid "Variable must all be of the same type"
+msgstr ""
+"變數必須都是相同的類型"
+
+#: STATS_CATEGORY_ORDER.py:382
+msgid "A non-numeric value to count was specified for a numeric variable"
+msgstr ""
+"已為數值變數指定要計數的非數值"
+
+#: STATS_CATEGORY_ORDER.py:415
+msgid "No valid cases were found"
+msgstr ""
+"找不到有效的觀察值"
+
+#: STATS_CATEGORY_ORDER.py:426
+msgid "No variables meet the count or percentage threshold"
+msgstr ""
+"沒有變數符合計數或百分比臨界值"
+
+#: STATS_CATEGORY_ORDER.py:438
+msgid "Minimum count: < %s"
+msgstr ""
+"計數下限：< %s"
+
+#: STATS_CATEGORY_ORDER.py:438
+msgid "Minimum percentage: < %s"
+msgstr ""
+"百分比下限：< %s"
+
+#: STATS_CATEGORY_ORDER.py:440
+msgid "Maximum count: >= %s"
+msgstr ""
+"計數上限：>= %s"
+
+#: STATS_CATEGORY_ORDER.py:442
+msgid "Maximum percentage: >= %s"
+msgstr ""
+"百分比上限：>= %s"
+
+#: STATS_CATEGORY_ORDER.py:443
+msgid "Variables excluded: %s"
+msgstr ""
+"已排除的變數：%s"
+
+#: STATS_CATEGORY_ORDER.py:451
+msgid "Macro Definition: %s"
+msgstr ""
+"巨集定義：%s"
+
+#: STATS_CATEGORY_ORDER.py:459
+msgid "Variables"
+msgstr ""
+"變數"
+
+#: STATS_CATEGORY_ORDER.py:461 STATS_CATEGORY_ORDER.py:477
+msgid "Counts"
+msgstr ""
+"計數(T)"
+
+#: STATS_CATEGORY_ORDER.py:466
+msgid "Excluded Variables for Macro Definition: %s"
+msgstr ""
+"巨集定義的已排除變數：%s"
+
+#: STATS_CATEGORY_ORDER.py:475
+msgid "Excluded Variables"
+msgstr ""
+"已排除的變數"
+
+#: STATS_CATEGORY_ORDER.py:633
+msgid "Variable not found: %s"
+msgstr ""
+"找不到變數：%s"
+
+#: STATS_CATEGORY_ORDER.py:644
+msgid "MR set not found: %s"
+msgstr ""
+"找不到 MR 集：%s"
+
+#: STATS_CATEGORY_ORDER.py:704
+msgid "---"
+msgstr ""
+"---"
+
+
+
