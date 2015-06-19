@@ -1,0 +1,174 @@
+#/***********************************************************************
+# * Licensed Materials - Property of IBM 
+# *
+# * IBM SPSS Products: Statistics Common
+# *
+# * (C) Copyright IBM Corp. 1989, 2014
+# *
+# * US Government Users Restricted Rights - Use, duplication or disclosure
+# * restricted by GSA ADP Schedule Contract with IBM Corp. 
+# ************************************************************************/
+
+# NLS_ENCODING=UTF-8
+# IBMUPYTH
+
+
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2014-11-27 16:39+China Standard Time\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: STATS_CATEGORY_ORDER.py:131
+msgid "Either a  prefix or a set of macro or MR set names must be specified"
+msgstr ""
+"接頭辞を指定するか、一連のマクロまたは MR グループの名前を指定する必要があります"
+
+#: STATS_CATEGORY_ORDER.py:135
+msgid "The number of macro or MR set names specified is different from the number of items"
+msgstr ""
+"指定したマクロ名または MR グループ名の数が項目の数と異なっています"
+
+#: STATS_CATEGORY_ORDER.py:146
+msgid "Items to process must be either all numeric or all string"
+msgstr ""
+"処理する項目は、すべてが数値またはすべてが文字列でなければなりません"
+
+#: STATS_CATEGORY_ORDER.py:151
+msgid "A nonnumeric special value was given for numeric variables"
+msgstr ""
+"数値型変数に非数値の特殊値が与えられました"
+
+#: STATS_CATEGORY_ORDER.py:168
+msgid "Name"
+msgstr ""
+"名前"
+
+#: STATS_CATEGORY_ORDER.py:169
+msgid "Definition"
+msgstr ""
+"定義"
+
+#: STATS_CATEGORY_ORDER.py:184
+msgid "ITEMS and NAMES cannot be used with COUNTORDERING specifications."
+msgstr ""
+"ITEMS および NAMES は、COUNTORDERING の指定と一緒には使用できません。"
+
+#: STATS_CATEGORY_ORDER.py:186
+msgid "Values to count must and a macroname must be specified when using COUNTORDERING specifications."
+msgstr ""
+"COUNTORDERING の指定を使用する場合は、集計する値とマクロ名を指定する必要があります。"
+
+#: STATS_CATEGORY_ORDER.py:241
+msgid "The weight variable cannot be included as a variable."
+msgstr ""
+"重み付け変数を変数として組み込むことはできません。"
+
+#: STATS_CATEGORY_ORDER.py:316
+msgid "The specified set is a multiple category set.  Only multiple dichotomy sets can be used: %s"
+msgstr ""
+"指定したグループは多重カテゴリ グループです。使用できるのは多重 2 分グループのみです: %s"
+
+#: STATS_CATEGORY_ORDER.py:319
+msgid "The weight variable cannot be included in an MR set."
+msgstr ""
+"重み付け変数を MR グループに組み込むことはできません。"
+
+#: STATS_CATEGORY_ORDER.py:376
+msgid "Variable must all be of the same type"
+msgstr ""
+"変数は、すべて同じ型である必要があります。"
+
+#: STATS_CATEGORY_ORDER.py:382
+msgid "A non-numeric value to count was specified for a numeric variable"
+msgstr ""
+"数値変数に対して、非数値の集計する値が指定されていました"
+
+#: STATS_CATEGORY_ORDER.py:415
+msgid "No valid cases were found"
+msgstr ""
+"有効なケースが見つかりませんでした"
+
+#: STATS_CATEGORY_ORDER.py:426
+msgid "No variables meet the count or percentage threshold"
+msgstr ""
+"度数またはパーセンテージのしきい値に一致する変数がありません"
+
+#: STATS_CATEGORY_ORDER.py:438
+msgid "Minimum count: < %s"
+msgstr ""
+"最小度数: < %s"
+
+#: STATS_CATEGORY_ORDER.py:438
+msgid "Minimum percentage: < %s"
+msgstr ""
+"最小パーセンテージ: < %s"
+
+#: STATS_CATEGORY_ORDER.py:440
+msgid "Maximum count: >= %s"
+msgstr ""
+"最大度数: >= %s"
+
+#: STATS_CATEGORY_ORDER.py:442
+msgid "Maximum percentage: >= %s"
+msgstr ""
+"最大パーセンテージ: >= %s"
+
+#: STATS_CATEGORY_ORDER.py:443
+msgid "Variables excluded: %s"
+msgstr ""
+"除外された変数: %s"
+
+#: STATS_CATEGORY_ORDER.py:451
+msgid "Macro Definition: %s"
+msgstr ""
+"マクロ定義: %s"
+
+#: STATS_CATEGORY_ORDER.py:459
+msgid "Variables"
+msgstr ""
+"変数"
+
+#: STATS_CATEGORY_ORDER.py:461 STATS_CATEGORY_ORDER.py:477
+msgid "Counts"
+msgstr ""
+"度数(T)"
+
+#: STATS_CATEGORY_ORDER.py:466
+msgid "Excluded Variables for Macro Definition: %s"
+msgstr ""
+"マクロ定義で除外された変数: %s"
+
+#: STATS_CATEGORY_ORDER.py:475
+msgid "Excluded Variables"
+msgstr ""
+"除外された変数"
+
+#: STATS_CATEGORY_ORDER.py:633
+msgid "Variable not found: %s"
+msgstr ""
+"変数が見つかりません: %s"
+
+#: STATS_CATEGORY_ORDER.py:644
+msgid "MR set not found: %s"
+msgstr ""
+"MR グループが見つかりません: %s"
+
+#: STATS_CATEGORY_ORDER.py:704
+msgid "---"
+msgstr ""
+"---"
+
+
+
