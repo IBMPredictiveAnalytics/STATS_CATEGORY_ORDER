@@ -1,0 +1,174 @@
+#/***********************************************************************
+# * Licensed Materials - Property of IBM 
+# *
+# * IBM SPSS Products: Statistics Common
+# *
+# * (C) Copyright IBM Corp. 1989, 2014
+# *
+# * US Government Users Restricted Rights - Use, duplication or disclosure
+# * restricted by GSA ADP Schedule Contract with IBM Corp. 
+# ************************************************************************/
+
+# NLS_ENCODING=UTF-8
+# IBMUPYTH
+
+
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2014-11-27 16:39+China Standard Time\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: STATS_CATEGORY_ORDER.py:131
+msgid "Either a  prefix or a set of macro or MR set names must be specified"
+msgstr ""
+"Необходимо указать или префикс, или набор макрокоманд, или имена набора переменных"
+
+#: STATS_CATEGORY_ORDER.py:135
+msgid "The number of macro or MR set names specified is different from the number of items"
+msgstr ""
+"Заданное количество макрокоманд или имен наборов переменных отличается от числа элементов"
+
+#: STATS_CATEGORY_ORDER.py:146
+msgid "Items to process must be either all numeric or all string"
+msgstr ""
+"Элементы для обработки должны быть или все числовыми, или все строковыми"
+
+#: STATS_CATEGORY_ORDER.py:151
+msgid "A nonnumeric special value was given for numeric variables"
+msgstr ""
+"Для числовых переменных было задано специальное нечисловое значение"
+
+#: STATS_CATEGORY_ORDER.py:168
+msgid "Name"
+msgstr ""
+"Имя"
+
+#: STATS_CATEGORY_ORDER.py:169
+msgid "Definition"
+msgstr ""
+"Параметры"
+
+#: STATS_CATEGORY_ORDER.py:184
+msgid "ITEMS and NAMES cannot be used with COUNTORDERING specifications."
+msgstr ""
+"ITEMS и NAMES нельзя использовать со спецификациями COUNTORDERING."
+
+#: STATS_CATEGORY_ORDER.py:186
+msgid "Values to count must and a macroname must be specified when using COUNTORDERING specifications."
+msgstr ""
+"Значения для подсчета и имя макрокоманды должны быть указаны при использовании спецификаций COUNTORDERING."
+
+#: STATS_CATEGORY_ORDER.py:241
+msgid "The weight variable cannot be included as a variable."
+msgstr ""
+"Переменную веса нельзя включать как переменную."
+
+#: STATS_CATEGORY_ORDER.py:316
+msgid "The specified set is a multiple category set.  Only multiple dichotomy sets can be used: %s"
+msgstr ""
+"Заданный набор - это набор нескольких категорий. Можно использовать только несколько дихотомических наборов: %s"
+
+#: STATS_CATEGORY_ORDER.py:319
+msgid "The weight variable cannot be included in an MR set."
+msgstr ""
+"Переменную веса нельзя включать как набор переменных."
+
+#: STATS_CATEGORY_ORDER.py:376
+msgid "Variable must all be of the same type"
+msgstr ""
+"Все переменные должны быть одного типа."
+
+#: STATS_CATEGORY_ORDER.py:382
+msgid "A non-numeric value to count was specified for a numeric variable"
+msgstr ""
+"Для подсчета в числовой переменной было указано нечисловое значение"
+
+#: STATS_CATEGORY_ORDER.py:415
+msgid "No valid cases were found"
+msgstr ""
+"Допустимые наблюдения не обнаружены"
+
+#: STATS_CATEGORY_ORDER.py:426
+msgid "No variables meet the count or percentage threshold"
+msgstr ""
+"Никакие переменные не соответствуют количественному или процентному порогу"
+
+#: STATS_CATEGORY_ORDER.py:438
+msgid "Minimum count: < %s"
+msgstr ""
+"Минимальное количество: < %s"
+
+#: STATS_CATEGORY_ORDER.py:438
+msgid "Minimum percentage: < %s"
+msgstr ""
+"Минимальный процент: < %s"
+
+#: STATS_CATEGORY_ORDER.py:440
+msgid "Maximum count: >= %s"
+msgstr ""
+"Максимальное количество: >= %s"
+
+#: STATS_CATEGORY_ORDER.py:442
+msgid "Maximum percentage: >= %s"
+msgstr ""
+"Максимальный процент: >= %s"
+
+#: STATS_CATEGORY_ORDER.py:443
+msgid "Variables excluded: %s"
+msgstr ""
+"Исключенные переменные: %s"
+
+#: STATS_CATEGORY_ORDER.py:451
+msgid "Macro Definition: %s"
+msgstr ""
+"Определение макрокоманды: %s"
+
+#: STATS_CATEGORY_ORDER.py:459
+msgid "Variables"
+msgstr ""
+"Переменные"
+
+#: STATS_CATEGORY_ORDER.py:461 STATS_CATEGORY_ORDER.py:477
+msgid "Counts"
+msgstr ""
+"Количества"
+
+#: STATS_CATEGORY_ORDER.py:466
+msgid "Excluded Variables for Macro Definition: %s"
+msgstr ""
+"Исключенный переменные для определения макрокоманды: %s"
+
+#: STATS_CATEGORY_ORDER.py:475
+msgid "Excluded Variables"
+msgstr ""
+"Исключенные переменные"
+
+#: STATS_CATEGORY_ORDER.py:633
+msgid "Variable not found: %s"
+msgstr ""
+"Переменная не найдена: %s"
+
+#: STATS_CATEGORY_ORDER.py:644
+msgid "MR set not found: %s"
+msgstr ""
+"Набор переменных не найден: %s"
+
+#: STATS_CATEGORY_ORDER.py:704
+msgid "---"
+msgstr ""
+"---"
+
+
+
