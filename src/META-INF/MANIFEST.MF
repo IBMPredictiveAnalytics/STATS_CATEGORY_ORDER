@@ -1,0 +1,20 @@
+Name: STATS CATEGORY ORDER
+Dialog-Specs: STATS_CATEGORY_ORDER.spd
+Command-Specs: STATS_CATEGORY_ORDER.xml
+Code-Files: STATS_CATEGORY_ORDER.py
+Misc-Files: extsyntax.css,IBMdialogicon.png,markdown.html,IBMdialogicon.png
+Summary: Create a macro or multiple dichotomy set with a specified var
+ iable order
+Description: This procedure takes a list of ordinary variables or mult
+ iple dichotomy sets.  For ordinary variables, it creates a macro list
+ ing the variables in sorted order of the count.  This macro can be us
+ ed in the CTABLES CATEGORIES subcommand to control the order in the t
+ able.  Unlike CTABLES, it can move special values out of the sort ord
+ er.  For multiple dichotomy sets, it creates a new set with the categ
+ ories similarly reordered.
+Author: JKP, IBM SPSS
+Version: 1.3.0
+Product-Version: 18
+Date: 7/30/2013
+Plugins: Python
+Translation-Catalogues: lang
