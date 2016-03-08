@@ -4,7 +4,7 @@
 <!--                                                                   -->
 <!-- IBM SPSS Products: Statistics Common                              -->
 <!--                                                                   -->
-<!-- (C) Copyright IBM Corp. 1989, 2013                                -->
+<!-- (C) Copyright IBM Corp. 1989, 2016                               -->
 <!--                                                                   -->
 <!-- US Government Users Restricted Rights - Use, duplication or       -->
 <!-- disclosure restricted by GSA ADP Schedule Contract with IBM       -->
@@ -20,6 +20,8 @@
 		<Parameter Name="SPECIALVALUES" ParameterType="TokenList"/>
 		<Parameter Name="OTHER" ParameterType="Keyword"/>
 		<Parameter Name="SPECIALVARS" ParameterType="VariableNameList"/>
+		<Parameter Name="CUSTOMATTR" ParameterType="Keyword"/>
+		<Parameter Name="ATTRNAME" ParameterType="VariableName"/>
 	</Subcommand>
 	<Subcommand Name="OPTIONS">
 		<Parameter Name="ORDER" ParameterType="Keyword"/>

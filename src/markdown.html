@@ -28,7 +28,10 @@ PREFIX = <em>string</em><br/>
 NAMES = <em>names</em><br/>
 SPECIALVALUES = <em>special values</em><br/>
 SPECIALVARS = <em>special variables</em><br/>
-OTHER=YES or NO<sup>&#42;&#42;</sup><br/>
+OTHER = YES or NO<sup>&#42;&#42;</sup><br/>
+CUSTOMATTR = NO<sup>&#42;&#42;</sup> or YES</br>
+ATTRNAME = <em>name</em></br>
+
 or<br/>
 /COUNTORDERING<br/>
 VARIABLES = <em>list of variables</em><sup>&#42;</sup><br/>
@@ -51,7 +54,7 @@ MISSING = INCLUDE or EXCLUDE<sup>&#42;&#42;</sup></p>
 <p><sup>&#42;</sup> Required depending on mode of use<br/>
 <sup>&#42;&#42;</sup> Default  </p>
 </div>
-<p>If not using COUNTORDERING, either PREFIX or NAMES is required.
+<p>If not using COUNTORDERING, either PREFIX or NAMES or a custom attribute is required.
 If using COUNTORDERING, VARIABLES, COUNTVALUES, and MACRONAME are required.</p>
 
 
@@ -64,14 +67,16 @@ STATS CATEGORY ORDER /COUNTORDERING VARIABLES=x y z
 <p>This procedure creates macro definitions or multiple dichotomy sets for use
 in Custom Tables in order to control the category order beyond what is built
 in to that procedure.  It can also create macros listing variables in order
-of the frequency of occurrence of specified values.</p>
+of the frequency of occurrence of specified values.  For variables, it can
+also create a custom attribute.</p>
 
 <p>The procedure processes three types of input.  For an ordinary variable
 it creates a macro definition that lists the categories in sorted order of
 the counts with the ability to move selected values to the top or bottom
 of the list.  A typical usage would be to move an &ldquo;other&rdquo; category to the
 bottom.  The generated macro can be used in the CTABLES CATEGORIES
-subcommand to specify the order.</p>
+subcommand to specify the order.  In addition or instead of a macro definition,
+it can create a custom attribute.</p>
 
 <p>The second type of input is one or more multiple dichotomy sets.  An
 MD set consists of a group of variables representing choices or attributes
@@ -100,7 +105,7 @@ listed or contained in the sets must have the same fundamental type.</p>
 <p><strong>PREFIX</strong> or <strong>NAMES</strong> specify the output names.  PREFIX specifies text that will
 be prepended to the input names to form the output.  NAMES specifies
 a list of explicit names for the output.  Either PREFIX or NAMES is
-required, but only one can be used.</p>
+required unless a custom attribute is created, but only one can be used.</p>
 
 <p><strong>SPECIALVALUES</strong> lists the values that are special for ordinary variables.<br/>
 String values should be enclosed in quotes if they contain a blank.<br/>
@@ -115,6 +120,24 @@ the input sets.</p>
 the data to the result with a count of zero.  This only applies
 to ordinary variables.  If missing values are excluded,
 labeled missing values are omitted.</p>
+
+<p><strong>CUSTOMATTR</strong> = YES causes a custom attribute to be created.
+The name of the attribute defaults to ORDER but can be set with
+<strong>ATTRNAME</strong>.  If CUSTOMATTR = NO, ATTRNAME is ignored.</p>
+
+<p>Here is an example using the custom attribute with Python</p>
+
+<pre class="example"><code>
+STATS CATEGORY ORDER items=jobcat customattr=yes.
+begin program.
+import spss, spssaux
+
+order = spssaux.VariableDict()['jobcat'].Attributes["ORDER"]
+cmd="""ctables /table jobcat
+/categories variables=jobcat [%s]""" % order
+spss.Submit(cmd)
+end program.
+</code></pre>
 
 <h2>OPTIONS </h2>
 
@@ -170,7 +193,7 @@ a sngle blank, but in order to use the macro in a CTABLES table expression,
 specify &ldquo;+&rdquo;</p>
 
 <p>/HELP displays this text and does nothing else.</p>
-
+<p>&copy; Copyright IBM Corp. 1989, 2016</p>
 </body>
 
 </html>

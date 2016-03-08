@@ -3,19 +3,20 @@
 # *
 # * IBM SPSS Products: Statistics Common
 # *
-# * (C) Copyright IBM Corp. 1989, 2014
+# * (C) Copyright IBM Corp. 1989, 2016
 # *
 # * US Government Users Restricted Rights - Use, duplication or disclosure
 # * restricted by GSA ADP Schedule Contract with IBM Corp. 
 # ************************************************************************/
 
 __author__ = "IBM SPSS, JKP"
-__version__ = "1.2.0"
+__version__ = "1.3.0"
 
 # history
 # 07-26-2013  original version
 # 08-09-2013  Add support for other
 # 24-11-2014  Add support for ordering variable lists by count
+# 26-feb-2016 Add support for custom attribute definition
 
 
 import spss, spssaux
@@ -107,11 +108,12 @@ def catvalues(items=None, prefix=None, names=None, specialvars=None,
     specialsorder="after", order="d", missing="exclude",
     categorylabels="varlabels", specialvalues=None, other=False,
     variables=None, countvalues=None, macroname=None,
-    mincount=0, minpercent=0, maxcount = None, maxpercent=None, separator=" "):
-    """Construct macros and MR set definitions"""
+    mincount=0, minpercent=0, maxcount = None, maxpercent=None, separator=" ",
+    customattr=False, attrname="ORDER"):
+    """Construct macros, custom attributes and MR set definitions"""
 
-# debugging
-    ## makes debug apply only to the current thread
+    ##debugging
+    # makes debug apply only to the current thread
     #try:
         #import wingdbstub
         #if wingdbstub.debugger != None:
@@ -121,14 +123,15 @@ def catvalues(items=None, prefix=None, names=None, specialvars=None,
             #wingdbstub.debugger.StartDebug()
         #import thread
         #wingdbstub.debugger.SetDebugThreads({thread.get_ident(): 1}, default_policy=0)
-        ## for V19 use
-        ###    ###SpssClient._heartBeat(False)
+        # for V19 use
+        ##    ###SpssClient._heartBeat(False)
     #except:
         #pass
     weightvar = spss.GetWeightVar()
+    # tODO: allow both names and macroname to be None if customattr
     if variables is None:
-        if sum([prefix is None, names is None]) != 1:
-            raise ValueError(_("""Either a  prefix or a set of macro or MR set names must be specified"""))
+        if sum([prefix is None, names is None]) != 1 and not customattr:
+            raise ValueError(_("""Either a  prefix or a set of macro or MR set names or a custom attribute must be specified"""))
         if names is not None:
             names = spssaux._buildvarlist(names)
             if len(names) != len(items):
@@ -157,17 +160,28 @@ def catvalues(items=None, prefix=None, names=None, specialvars=None,
         else:
             valuelabelsdict = None
             missingvaluesdict = None
-        spss.StartProcedure("STATS CATEGORY ORDER", "STATSCATEGORYMACRO")
         
         macrosgenerated = []
         if regularvars:
-            macrosgenerated = genVarsCategoryList(regularvars, specialvalues=specialvalues, macroname=names, 
+            macrosgenerated, customattrsgenerated = genVarsCategoryList(regularvars, 
+                specialvalues=specialvalues, macroname=names, 
                 missing=missing, order=order, weightvar=weightvar, specialsorder=specialsorder, 
-                valuelabelsdict=valuelabelsdict, missingvaluesdict=missingvaluesdict)
-            table = spss.BasePivotTable("Generated Macros", "STATSCATMACROS")
-            table.SimplePivotTable(rowdim=_("Name"), rowlabels=[names for names, values in macrosgenerated],
-                collabels = [_("Definition")], cells=[values for names, values in macrosgenerated])
-        spss.EndProcedure()  # can't issue MRSETS command in a procedure state
+                valuelabelsdict=valuelabelsdict, missingvaluesdict=missingvaluesdict,
+                customattr=customattr, attrname=attrname)
+            spss.StartProcedure("STATS CATEGORY ORDER", "STATSCATEGORYMACRO")
+            if customattrsgenerated:
+                caption = _("Custom attribute name: %s") % attrname
+            else:
+                caption = ""
+            table = spss.BasePivotTable("Generated Macros or Custom Attributes", 
+                "STATSCATMACROS", caption=caption)
+            if macrosgenerated:
+                gen = macrosgenerated
+            else:
+                gen = customattrsgenerated
+            table.SimplePivotTable(rowdim=_("Name"), rowlabels=[names for names, values in gen],
+                collabels = [_("Definition")], cells=[values for names, values in gen])
+            spss.EndProcedure()  # can't issue MRSETS command in a procedure state
         # specialvars do not have to have been in the original set.
         if mrsets:
             mrsetsgenerated = genSetsCategoryList(mrsets, allvars, vartypes, 
@@ -177,7 +191,8 @@ def catvalues(items=None, prefix=None, names=None, specialvars=None,
     
         # mrset generation displayed via MRSET creation command so not repeated here
         for m in macrosgenerated:
-            spss.SetMacroValue(m[0], m[1])
+            ###spss.SetMacroValue(m[0], m[1])    # This api mishandles Unicode characters so use syntax instead
+            spss.Submit("""DEFINE %s() %s""" %(m[0], m[1]))
             
     if variables is not None:
         if items is not None or names is not None:
@@ -217,8 +232,10 @@ def getmetadata(variables, missing):
     return vldict, missingsdict 
 
 def genVarsCategoryList(varnames, specialvalues, macroname, missing, order, 
-        weightvar, specialsorder, valuelabelsdict, missingvaluesdict):
-    """Generate sorted list(s) of values with possible insertion of extra values and create SPSS macros.
+        weightvar, specialsorder, valuelabelsdict, missingvaluesdict,
+        customattr, attrname):
+    """Generate sorted list(s) of values with possible insertion of extra values
+    and return list of SPSS macros to be created.
     
     varnames is a sequence of variable names to process.
     specialvalues is a sequence of values that should be inserted before the first zero count or at the end if no zeros or None.
@@ -231,6 +248,9 @@ def genVarsCategoryList(varnames, specialvalues, macroname, missing, order,
     specialsorder is 'before' or 'after' and indicates the location of the specials section
     If other, values that have value labels are appended to the list of values found
     in the data.
+    customattr indicates whether a custom attribute with the order should be generated
+    attrname is the name of the custom attribute
+    
 
     This function is mainly useful as a helper function for Ctables in building CATEGORIES subcommands.
     It may be useful to combine it with OTHERNM and/or MISSING in the category list.
@@ -262,6 +282,7 @@ def genVarsCategoryList(varnames, specialvalues, macroname, missing, order,
     
     valuelist = []
     macrosgenerated = []
+    customattrlist = []
     for i, vname in enumerate(varnames):
         # if labeled values were supplied but did not occur in the data,
         # add them with a count of zero
@@ -284,13 +305,36 @@ def genVarsCategoryList(varnames, specialvalues, macroname, missing, order,
             qchar = '"'
         else:
             qchar = ''
-        if not macroname[i].startswith("!"):
-            macroname[i] = "!" + macroname[i]
-        macrosgenerated.append([macroname[i],
-            " ".join([qchar + str(k) + qchar  for (value, k) in valuelist[i]])])
-        ###spss.SetMacroValue(macrosgenerated[-1][0], macrosgenerated[-1][1]) 
+        if macroname is not None:
+            if not macroname[i].startswith("!"):
+                macroname[i] = "!" + macroname[i]
+            macrosgenerated.append([macroname[i],
+                " ".join([qchar + strconv(k).rstrip() + qchar  for (value, k) in valuelist[i]])])
+        if customattr:
+            customattrlist.append([vname, " ".join([qchar + strconv(k).rstrip() + qchar  for (value, k) in valuelist[i]])])
+    
+    if customattr:
+        try:   # cannot start datastep if there are pending transformations
+            spss.StartDataStep()
+        except:
+            spss.Submit("EXECUTE.")
+            spss.StartDataStep()
+        ds = spss.Dataset()
+        
+        for spec in customattrlist:
+            ds.varlist[spec[0]].attributes[attrname] = spec[1]
+        spss.EndDataStep()
             
-    return macrosgenerated
+        
+    return macrosgenerated, customattrlist
+
+def strconv(ch):
+    """return ch if already a string; otherwise return its str as it will be a number"""
+    
+    if isinstance(ch, basestring):
+        return ch
+    else:
+        return str(ch)
 
 
 def genSetsCategoryList(mrsets, allvars, vartypes, resolver, specialvalues, macroname, 
@@ -341,6 +385,8 @@ def genSetsCategoryList(mrsets, allvars, vartypes, resolver, specialvalues, macr
     
     # produce value list for variables in a set
 
+    if macroname is None:
+        raise ValueError("No macro names were specified")
     manager = ManageValues(mrsetinfo=resolver.mrsets, allvars=allvars, allvalues=vvalues,
         specials=specialvalues, order=order, macroname=macroname, 
         categorylabels=categorylabels, specialsorder=specialsorder, other=other)
@@ -669,6 +715,8 @@ def Run(args):
         Template("SPECIALVARS", subc="", ktype="existingvarlist", var="specialvars", islist=True),
         Template("SPECIALVALUES", subc="", ktype="literal", var="specialvalues", islist=True),
         Template("OTHER", subc="", ktype="bool", var="other"),
+        Template("CUSTOMATTR", subc="", ktype="bool", var="customattr"),
+        Template("ATTRNAME", subc="", ktype="varname", var="attrname"),
         
         Template("ORDER", subc="OPTIONS", ktype="str", var="order",
             vallist=["a", "d"]),
