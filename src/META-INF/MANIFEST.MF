@@ -2,7 +2,7 @@ Name: STATS CATEGORY ORDER
 Dialog-Specs: STATS_CATEGORY_ORDER.spd
 Command-Specs: STATS_CATEGORY_ORDER.xml
 Code-Files: STATS_CATEGORY_ORDER.py
-Misc-Files: extsyntax.css,markdown.html,IBMdialogicon.png
+Misc-Files: extsyntax.css,IBMdialogicon.png,markdown.html
 Summary: Create a macro or multiple dichotomy set with a specified var
  iable order
 Description: This procedure takes a list of ordinary variables or mult
@@ -13,8 +13,10 @@ Description: This procedure takes a list of ordinary variables or mult
  er.  For multiple dichotomy sets, it creates a new set with the categ
  ories similarly reordered.
 Author: JKP, IBM SPSS
-Version: 1.4.0
-Product-Version: 18
+Version: 2.0.0
+Product-Version: 24
 Date: 7/30/2013
+Product-Version-Maximum: 99
 Plugins: Python
+Python-Version: 3
 Translation-Catalogues: lang

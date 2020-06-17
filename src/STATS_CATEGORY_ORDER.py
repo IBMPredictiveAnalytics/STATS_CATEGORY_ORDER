@@ -3,7 +3,7 @@
 # *
 # * IBM SPSS Products: Statistics Common
 # *
-# * (C) Copyright IBM Corp. 1989, 2016
+# * (C) Copyright IBM Corp. 1989, 2020
 # *
 # * US Government Users Restricted Rights - Use, duplication or disclosure
 # * restricted by GSA ADP Schedule Contract with IBM Corp. 
@@ -141,7 +141,7 @@ def catvalues(items=None, prefix=None, names=None, specialvars=None,
     
         resolver = Resolver()
         allvars, vartypes = resolver.resolve(items)  # check existence and get all variables and variable types
-        alltypes = vartypes.values()
+        alltypes = list(vartypes.values())
         # variables, direct or in MR sets, must be either all strings or all numeric
         numerics = any([vartypes[item] == 0 for item in allvars])
         strings = any([vartypes[item] != 0 for item in allvars])
@@ -294,14 +294,14 @@ def genVarsCategoryList(varnames, specialvalues, macroname, missing, order,
             for v in specialvalues:
                 if v in vvalues[i]:
                     del(vvalues[i][v])
-        valuelist.append(sorted([(value, key) for (key, value) in vvalues[i].iteritems()], reverse = order == 'd'))
+        valuelist.append(sorted([(value, key) for (key, value) in vvalues[i].items()], reverse = order == 'd'))
         if not specialvalues is None:
             if specialsorder == "after":
                 valuelist[i].extend([(None, v) for v in specialvalues])
             else:
                 valuelist[i] = [(None, v) for v in specialvalues] + valuelist[i]
 
-        if isinstance(valuelist[i][0][1], basestring):
+        if isinstance(valuelist[i][0][1], str):
             qchar = '"'
         else:
             qchar = ''
@@ -331,7 +331,7 @@ def genVarsCategoryList(varnames, specialvalues, macroname, missing, order,
 def strconv(ch):
     """return ch if already a string; otherwise return its str as it will be a number"""
     
-    if isinstance(ch, basestring):
+    if isinstance(ch, str):
         return ch
     else:
         return str(ch)
@@ -462,7 +462,7 @@ def genVarMacro(variables, countvalues, order, macroname, mincount,
     
     # apply thresholds
     excluded = {}
-    for v, count in counts.items():
+    for v, count in list(counts.items()):
         if count < mincount or count/wsum < minpercent or\
            (maxcount is not None and count >= maxcount) or\
            (maxpercent is not None and count/wsum >= maxpercent):
@@ -474,7 +474,7 @@ def genVarMacro(variables, countvalues, order, macroname, mincount,
     # generate macro definition order variables by count
     if not macroname.startswith("!"):
         macroname = "!" + macroname
-    macrovariables = [item[0] for item in sorted(counts.items(), key=lambda x: x[1], 
+    macrovariables = [item[0] for item in sorted(list(counts.items()), key=lambda x: x[1], 
         reverse = order == "d")]
     spss.SetMacroValue(macroname,
         separator.join(macrovariables))
@@ -515,7 +515,7 @@ def genVarMacro(variables, countvalues, order, macroname, mincount,
         )
         if not weightvar:
             pt2.SetDefaultFormatSpec(spss.FormatSpec.Count)        
-        rowlabels = [item[0] for item in sorted(excluded.items(), key=lambda x: x[1], 
+        rowlabels = [item[0] for item in sorted(list(excluded.items()), key=lambda x: x[1], 
                 reverse = order == "d")]        
         pt2.SimplePivotTable(
             rowdim=_("""Excluded Variables"""),
@@ -569,7 +569,7 @@ class ManageValues(object):
         else:     # multiple category set
             #accumulate counts across variables of each value
             for v in vnames:
-                thevalues = self.allvalues[self.allvars.index(v)].keys() # all values in this var
+                thevalues = list(self.allvalues[self.allvars.index(v)].keys()) # all values in this var
                 for key in thevalues:
                     self.thismrset[key] = self.thismrset.get(key, 0) + \
                         self.allvalues[self.allvars.index(v)][key]
@@ -584,7 +584,7 @@ class ManageValues(object):
         for v in self.specials:
             if v in self.thismrset:
                 del(self.thismrset[v])
-        setvalues = sorted([(value, key) for (key, value) in self.thismrset.iteritems()], reverse = self.order == 'd')
+        setvalues = sorted([(value, key) for (key, value) in self.thismrset.items()], reverse = self.order == 'd')
         for j in range(len(setvalues)):
             if setvalues[j][0] == 0 and not self.other:
                 if self.specialsorder == "after":
@@ -617,9 +617,9 @@ def clean(items):
     """trim trailing blanks in items
     items is a dictionary of numeric or string value keys and associated values"""
     
-    keys = items.keys()
-    if isinstance(keys[0], basestring):  # types must be homogeneous
-        return dict(zip([item.rstrip() for item in keys], items.values()))
+    keys = list(items.keys())
+    if isinstance(keys[0], str):  # types must be homogeneous
+        return dict(list(zip([item.rstrip() for item in keys], list(items.values()))))
     else:
         return items
     
@@ -644,7 +644,7 @@ def attributesFromDict(d):
     """build self attributes from a dictionary d."""
     
     self = d.pop('self')
-    for name, value in d.iteritems():
+    for name, value in d.items():
         setattr(self, name, value)
 
 class Resolver(object):
@@ -657,7 +657,7 @@ class Resolver(object):
         self.varlist = self.ds.varlist
         self.mrsets = {}
         # the api always returns the set name in upper case
-        for name, theset in self.ds.multiResponseSet.data.iteritems():
+        for name, theset in self.ds.multiResponseSet.data.items():
             self.mrsets[name.upper()] = theset
             
     def close(self):
@@ -704,7 +704,7 @@ class Resolver(object):
 def Run(args):
     """Execute the STATS CATEGORY ORDER command"""
 
-    args = args[args.keys()[0]]
+    args = args[list(args.keys())[0]]
     ###print args   #debug
     
 
@@ -755,7 +755,7 @@ def Run(args):
             return msg
 
         # A HELP subcommand overrides all else
-    if args.has_key("HELP"):
+    if "HELP" in args:
         #print helptext
         helper()
     else:
@@ -775,7 +775,7 @@ def helper():
     # webbrowser.open seems not to work well
     browser = webbrowser.get()
     if not browser.open_new(helpspec):
-        print("Help file not found:" + helpspec)
+        print(("Help file not found:" + helpspec))
 try:    #override
     from extension import helper
 except:
