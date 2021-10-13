@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>创建宏或多二分集以控制类别顺序</title>
+
+  <style type="text/css">
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+  --> 
+    </style>
+</head>
+
+<body>
+<h1>创建宏或多二分集以控制类别顺序</h1>
+此过程创建要在“定制表”中使用的宏定义或多二分集，以便提供该过程中内置的控制以外的类别顺序控制。
+对于普通变量（不是多二分集），它还可以创建定制属性来保存可用于 Python Programmability 的顺序。<p>该过程处理两种类型的输入。对于普通变量，将创建一个按计数排序顺序列出各个类别的宏定义，并能够将选择的值移至列表开头或末尾。典型的用法是，将“其他”类别移至末尾。在 CTABLES CATEGORIES
+子命令中，可以使用这个生成的宏来指定顺序。使用定制属性时，可以使用 Python 代码生成子命令语法。</p>
+<p>第二类输入是一个或多个多二分集。MD 集合由一组变量组成，对于每个属性，这些变量将选项或属性表示为“是”（所计数的值）或“否”。此过程创建一个新的 MD 集合，其中包含相同的变量并选择性地包括其他类似变量，而且各个变量按计数排序顺序排列。通过指定特殊变量（但通常不必将其包括在集合定义中），可以将这些变量移至列表开头或末尾。使用定制表对新集合制表将按此过程生成变量的顺序来列出这些变量。</p>
+<p>
+<p class="bullet">根据常规变量和 MD 集合的各自类型的指定项，可以同时对其进行处理。</p>
+<p class="bullet">此过程主要用于 CTABLES，但也可用于 GGRAPH 中的 MD 集合。</p>
+<p class="bullet">不得将此过程与多类别集配合使用，但 STATS MCSET CONVERT 扩展命令可以将 MC 集合转换为 MD 集合。</p>
+
+<p><span class="runinhead">变量和 MD 集合</span> 请选择要处理的变量和多二分集。对于选择的每个变量都将创建一个宏；对于选择的每个集合都将创建一个 MD 集合。</p>
+<p class="bullet">所有直接选择的或者作为集合成员而选择的变量必须具有同一种基本类型（数字或字符串）。</p>
+</p>
+<p><span class="runinhead">特殊值</span> 对于普通变量，请输入特殊的值。请使用空格来分隔这些值。对于包含空格的字符串值，应该将其括在引号内。特殊值或变量将根据“选项”中的指定项移到排序顺序之外。</p>
+<p class="bullet">这些值不影响 MD 集合。
+</p>
+
+
+<p><span class="runinhead">特殊变量</span> 对于 MD 集合，请选择包含特殊值的变量（例如“其他”变量）。定义新集合时，这些变量将根据“选项”中的指定项移到排序顺序之外。</p>
+<p class="bullet">这些值不影响普通变量。</p>
+<p><span class="runinhead">在数据和空集合变量中找不到的值</span> 对于普通变量，如果选中此框，那么会将数据中找不到的所标注值添加到结果中，并且其计数为零。如果排除了缺失值，那么将省略所标注的值。</p>
+<p>对于集合，这将导致集合中计数为零的成分变量与其他集合变量分组在一起。仅当定义了特殊变量时，才有所差别。</p>
+<p><span class="runinhead">宏或 MD 集合名称</span> 这个框用于定义所创建的项的名称。如果输入了前缀，那么输出名称的格式将为：<br>
+prefix_inputname<br>
+另外，您还可以输入一列名称以用于输出。请按所选变量和集合的数目输入名称。对于宏定义，将在名称前面加上“!”。对于 MD 集合，将在前面加上“$”。</p>
+<p class="bullet">除非现有变量的类型与新输出的类型不一致（这将导致出错），否则与输出同名的现有变量或集合将被替换。</p>
+<p>如果选择“无”，请在“定制属性”框中指定定制属性。
+</p>
+
+<p><span class="runinhead">类别顺序的定制属性</span> 选中该框可以为用于指定顺序的每个变量创建定制属性。
+这可以在 Python 代码中用于生成相应的 CTABLES 语法。
+定制属性可以显示在数据编辑器变量视图和其他位置中。
+它们随数据集一起保存，除非数据已更改，否则不必在将来的会话中重做计算。</p>
+<p><span class="runinhead">名称</span> 您可以在此控件中指定定制属性的名称。</p>
+<p>以下是将定制属性用于 Python 的示例</p>
+
+<p><span class="code">
+STATS CATEGORY ORDER items=jobcat customattr=yes.</br>
+begin program.</br>
+import spss, spssaux</br>
+</br>
+order = spssaux.VariableDict()['jobcat'].Attributes["ORDER"]</br>
+cmd="""ctables /table jobcat</br>
+/categories variables=jobcat [%s]""" % order</br>
+spss.Submit(cmd)</br>
+end program.</br>
+</span>
+<h2>选项</h2>
+
+<p><span class="runinhead">顺序</span> 请选择降序或升序。除特殊变量以外，类别或集合变量将按其计数的所选方向列出。</p>
+
+<p><span class="runinhead">特殊值位置</span> 所有特殊值或特殊变量都将根据此指定项移至列表末尾或开头。</p>
+<p><span class="runinhead">用户缺失值</span> 请选择是对数据或标签中的用户缺失值进行计数还是将其忽略。此设置将逐个地应用于每个变量。如果某个特殊值也是缺失值，那么将包括该值，而与此设置无关。始终忽略系统缺失值。</p>
+
+<p><span class="runinhead">类别标签</span> （仅限于 MD 集合）请选择是使用集合变量的变量标签还是所计数值的标签来标注集合。通常，这与创建输入集合时使用的指定项相同。</p>
+
+<h2>其他功能部件</h2>
+<p>
+此对话框将生成 STATS CATEGORY ORDER 扩展命令的语法。要显示此命令的语法帮助，请运行以下语法：</p>
+<p class="codeblock">STATS CATEGORY ORDER /HELP。</p>
+<p>通过使用语法，您可以创建用于按照一组指定值的频率顺序列出一组变量的宏。</p>
+
+<h2>要求</h2>
+此命令需要 Python Essentials。您可以通过 SPSS Community Web 站点 (www.ibm.com/developerworks/spssdevcentral) 下载或通过安装材料获取。</p>
+
+<p style="font-size:80%;">Copyright SPSS Inc. 1989,2021</p>

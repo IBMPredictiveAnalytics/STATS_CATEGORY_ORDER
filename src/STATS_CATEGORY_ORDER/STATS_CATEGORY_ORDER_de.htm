@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Makros oder Sets von dichotomen Variablen zur Steuerung der Kategoriereihenfolge erstellen</title>
+
+  <style type="text/css">
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+  --> 
+    </style>
+</head>
+
+<body>
+<h1>Makros oder Sets von dichotomen Variablen zur Steuerung der Kategoriereihenfolge erstellen</h1>
+Diese Prozedur erstellt Makrodefinitionen oder Sets von dichotomen Variablen,
+die in benutzerdefinierten Tabellen verwendet werden können, um die von der Prozedur
+bereitgestellten Möglichkeiten zur Steuerung der Kategoriereihenfolge zu erweitern.
+Für gewöhnliche Variablen (nicht für Sets von dichotomen Variablen) können auch
+benutzerdefinierte Attribute erstellt werden, die die Reihenfolge enthalten,
+die bei der Python-Programmierung verwendet werden kann.
+
+<p>Die Prozedur verarbeitet zwei Eingabetypen.  Bei einer gewöhnlichen Variable
+erstellt sie eine Makrodefinition, die die Kategorien in der Reihenfolge
+ihrer Häufigkeit auflistet, wobei die Möglichkeit besteht, ausgewählte Werte
+an den Anfang oder das Ende der Liste zu verschieben. Ein typischer Anwendungsfall wäre, eine Kategorie des Typs 'Andere' an
+das Ende zu verschieben.  Das generierte Makro kann im Unterbefehl CTABLES CATEGORIES verwendet werden,
+um die Reihenfolge anzugeben. Mit einem benutzerdefinierten Attribut könnte die Syntax des Unterbefehls
+mit Python-Code generiert werden.</p>
+<p>Der zweite Eingabetyp besteht aus mindestens einem Set von dichotomen Variablen.  Ein Set von dichotomen Variablen besteht aus einer Gruppe von Variablen, die Auswahlmöglichkeiten oder Attribute
+als 'Ja' (der gezählte Wert) oder 'Nein' für jedes Attribut darstellen.  Mit der Prozedur wird ein neues Set von dichotomen Variablen bestehend aus derselben Variable plus optional
+anderen ähnlichen Variablen erstellt, wobei die Variablen in der Reihenfolge ihrer Häufigkeit aufgelistet werden.  Durch die Angabe von Sondervariablen, die der Setdefinition üblicherweise hinzugefügt werden, aber nicht
+hinzugefügt werden müssen, können diese Variablen an den Anfang oder das Ende der Liste verschoben werden.  Ein Tabulieren der neuen Sets anhand benutzerdefinierter Tabellen
+bewirkt, dass die Variablen in der von dieser Prozedur generierten Reihenfolge aufgelistet werden.</p>
+<p>
+<p class="bullet">Reguläre Variablen und Sets von dichotomen Variablen
+können gleichzeitig verarbeitet werden, jeweils nach den für Ihren Typ festgelegten Spezifikationen.</p>
+<p class="bullet">Diese Prozedur ist vorwiegend bei CTABLES nützlich,
+kann jedoch auch bei Sets von dichotomen Variablen in GGRAPH hilfreich sein.</p>
+<p class="bullet">Die Prozedur kann nicht bei Sets von kategorialen Variablen verwendet werden.
+Es ist jedoch möglich, mit dem Erweiterungsbefehl STATS MCSET CONVERT ein Set
+von kategorialen Variablen in ein Set von dichotomen Variablen umzuwandeln.</p>
+
+<p><span class="runinhead">Variablen und Sets von dichotomen Variablen</span>
+Wählen Sie die zu verarbeitenden Variablen und Sets von dichotomen Variablen aus.  Für jede
+ausgewählte Variable wird ein Makro erstellt; für jedes ausgewählte Set wird ein
+Set von dichotomen Variablen erstellt.</p>
+<p class="bullet">Alle direkt oder als Mitglieder eines Sets ausgewählte Variablen
+müssen denselben grundsätzlichen Typ (numerisch oder Zeichenfolge) aufweisen.</p>
+</p>
+<p><span class="runinhead">Sonderwerte</span>
+Geben Sie die Werte ein, die bei gewöhnlichen Variablen als Sonderwerte gelten sollen.  Trennen Sie
+die Werte durch ein Leerzeichen.  Zeichenfolgewerte, die ein Leerzeichen enthalten, müssen in Anführungszeichen
+eingeschlossen werden.  Sonderwerte oder Variablen werden entsprechend den
+Spezifikationen in 'Optionen' aus der Sortierreihenfolge
+heraus verschoben.</p>
+<p class="bullet">Diese Werte haben keine Auswirkung auf Sets von dichotomen Variablen.
+</p>
+
+
+<p><span class="runinhead">Sondervariablen</span> Wählen Sie die
+Variablen aus, die Sonderwerte enthalten (z.&nbsp;B. eine Variable des Typs 'Andere'
+für Sets von dichotomen Variablen.  Diese Variablen werden entsprechend den
+Spezifikationen in 'Optionen' aus der Sortierreihenfolge
+heraus verschoben, wenn die neuen Sets definiert sind.</p>
+<p class="bullet">Diese Werte haben keine Auswirkung auf gewöhnliche Variablen.
+</p>
+<p><span class="runinhead">In Daten nicht gefundene Werte und leere Variablen im Set</span>
+Wählen Sie bei gewöhnlichen Variablen das Feld aus, um beschriftete Werte,
+die in den Daten nicht gefunden werden, den Ergebnissen mit einer Häufigkeit von null hinzuzufügen.
+Wenn fehlende Werte ausgeschlossen werden, werden beschriftete fehlende Werte übergangen.</p>
+<p>Bei Sets bewirkt dies, dass Komponentenvariablen der Sets mit einer Häufigkeit von null
+mit den anderen Variablen im Set zu einer Gruppe zusammengefasst werden.  Es macht nur dann einen Unterschied, wenn
+Sondervariablen definiert sind.</p>
+<p><span class="runinhead">Namen für Makros oder Sets von dichotomen Variablen</span> Über dieses
+Dialogfeld werden die Namen der erstellten Elemente definiert.  Wenn Sie ein
+Präfix eingeben, haben die Ausgabenamen das folgende Format:<br>
+Präfix_Eingabename<br>
+Alternativ können Sie eine Liste mit Namen für die Ausgaben eingeben.
+Geben Sie so viele Namen ein wie Variablen und Sets ausgewählt sind.
+Bei einer Makrodefinition wird dem Namen ein Ausrufezeichen ("!") vorangestellt.
+Bei einem Set von dichotomen Variablen wird ein Dollarzeichen ("$") vorangestellt.</p>
+<p class="bullet">Eine vorhandene Variable oder ein vorhandenes Set mit einem
+Namen, der mit einem Ausgabenamen identisch ist, wird ersetzt, sofern es nicht
+zu einem Fehler führt, wenn der Typ der vorhandenen Variable nicht mit dem
+Typ der neuen Ausgabe konsistent ist.</p>
+<p>Wenn 'Ohne' ausgewählt ist, geben Sie ein benutzerdefiniertes Attribut im Feld 'Benutzerdefiniertes Attribut' an.
+</p>
+
+<p><span class="runinhead">Benutzerdefiniertes Attribut für Kategoriereihenfolge</span>
+Wählen Sie das Kästchen aus, um ein benutzerdefiniertes Attribut für jede Variable zu erstellen,
+das die Reihenfolge angibt. Dies kann in Python-Code verwendet werden, um die entsprechende CTABLES-Syntax zu erzeugen.
+Benutzerdefinierte Attribute können in der Variablenansicht des Dateneditors und an anderen Stellen angezeigt werden.
+Sie werden zusammen mit dem Dataset gespeichert, sodass die Berechnung in einer späteren Sitzung nicht erneut durchgeführt
+werden muss, es sei denn, die Daten haben sich geändert.</p>
+<p><span class="runinhead">Name</span> Sie können den Namen für das benutzerdefinierte Attribut in diesem Steuerelement angeben.</p>
+<p>Im Folgenden finden Sie ein Beispiel für die Verwendung des benutzerdefinierten Attributs mit Python:</p>
+
+<p><span class="code">
+STATS CATEGORY ORDER items=jobcat customattr=yes.</br>
+begin program.</br>
+import spss, spssaux</br>
+</br>
+order = spssaux.VariableDict()['jobcat'].Attributes["ORDER"]</br>
+cmd="""ctables /table jobcat</br>
+/categories variables=jobcat [%s]""" % order</br>
+spss.Submit(cmd)</br>
+end program.</br>
+</span>
+<h2>Optionen</h2>
+
+<p><span class="runinhead">Reihenfolge</span> Wählen Sie 'Absteigend' oder
+'Aufsteigend' aus.  Die Kategorien oder Variablen im Set werden ihrer
+Häufigkeit entsprechend in der ausgewählten Richtung aufgelistet. Davon ausgenommen sind Sondervariablen.</p>
+
+<p><span class="runinhead">Position von Sonderwerten</span> Sonderwerte
+oder -variablen werden entsprechend der hier festgelegten Spezifikation
+an das Ende oder den Anfang der Liste verschoben.
+</p>
+<p><span class="runinhead">Benutzerdefiniert fehlende Werte</span> Wählen Sie aus, ob benutzerdefiniert
+fehlende Werte in den Daten oder Beschriftungen gezählt oder ignoriert werden sollen.  
+Diese Einstellung wird auf jede Variable einzeln angewendet.  Ist ein Sonderwert
+gleichzeitig ein fehlender Wert, wird er unabhängig von dieser
+Einstellung berücksichtigt.  Systemdefiniert fehlende Werte werden stets ignoriert. </p>
+
+<p><span class="runinhead">Kategoriebeschriftungen</span> Bei Sets von dichotomen Variablen können Sie
+auswählen, ob die Variablenbeschriftungen der Variablen im Set oder die Beschriftung
+der gezählten Werte zur Beschriftung des Sets verwendet werden soll.  Normalerweise
+würde dies der Spezifikation entsprechen, die bei der Erstellung des Eingabesets
+verwendet wurde.</p>
+
+<h2>Weitere Funktionen</h2>
+<p>
+Über dieses Dialogfeld wird Syntax für den Erweiterungsbefehl STATS CATEGORY ORDER generiert. Führen Sie den folgenden Befehl aus, um die Syntaxhilfe für diesen Befehl anzuzeigen:
+</p>
+<p class="codeblock">STATS CATEGORY ORDER /HELP.</p>
+<p>Mithilfe der Syntax können Sie ein Makro erstellen, das ein Variablenset in der Reihenfolge der Häufigkeit einer Gruppe von angegebenen Werten auflistet.</p>
+
+<h2>Anforderungen</h2>
+Für diesen Befehl ist Python Essentials erforderlich. Sie können Python Essentials von der SPSS Community-Website (www.ibm.com/developerworks/spssdevcentral) oder über Ihr Installationsmaterial herunterladen.</p>
+
+<p style="font-size:80%;">Copyright SPSS Inc. 1989,2021</p>

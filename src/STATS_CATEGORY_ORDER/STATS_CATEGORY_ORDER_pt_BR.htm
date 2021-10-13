@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Criar macros ou conjuntos de múltiplas dicotomias para controlar ordem de categoria</title>
+
+  <style type="text/css">
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+  --> 
+    </style>
+</head>
+
+<body>
+<h1>Criar macros ou conjuntos de múltiplas dicotomias para controlar ordem de categoria</h1>
+Este procedimento cria definições de macro ou conjuntos de múltiplas dicotomias para uso em Tabelas customizadas para controlar a ordem da categoria além do que está integrado a esse procedimento.  Para variáveis ordinárias (não conjuntos de múltiplas dicotomias), também é possível criar atributos customizados que mantêm a ordem em que podem ser usados com a programação Python.
+
+<p>O procedimento processa dois tipos de entrada.  Para uma variável ordinária que cria uma definição de macro que lista as categorias na ordem de classificação das contagens com a capacidade de mover valores selecionados para o início ou para o fim da lista.  Um uso típico seria mover uma categoria "outros" para a parte inferior.  A macro gerada pode ser usada no subcomando CTABLES CATEGORIES para especificar a ordem.  Com um atributo customizado, a sintaxe do subconjunto pode ser gerada usando o código Python.</p>
+<p>O segundo tipo de entrada é um ou mais conjuntos de múltiplas dicotomias.  Um conjunto MD consiste em um grupo de variáveis que representam opções ou atributos como sim (o valor contado) ou não para cada atributo.  O procedimento cria um conjunto MD novo composto da mesma variável mais opcionalmente outras variáveis semelhantes com as variáveis listadas na ordem de contagem ordenada.  Ao especificar variáveis especiais, geralmente, mas não necessariamente incluídas na definição do conjunto, essas variáveis podem ser movidas para a parte superior ou para a parte inferior da lista.  Tabular os novos conjuntos com tabelas customizadas listará as variáveis na ordem gerada por este procedimento.</p>
+<p>
+<p class="bullet">Tanto as variáveis regulares quanto os conjuntos MD podem ser processados ao mesmo tempo, cada um de acordo com as especificações para o seu tipo.</p>
+<p class="bullet">Este procedimento é principalmente útil para CTABLES, mas ele também pode ser útil para conjuntos MD em GGRAPH.</p>
+<p class="bullet">O procedimento não pode ser usado com vários conjuntos de categorias, mas o comando de extensão STATS MCSET CONVERT pode converter um conjunto MC em um conjunto MD.</p>
+
+<p><span class="runinhead">Variáveis e conjuntos MD</span> Selecione as variáveis e os conjuntos de múltiplas dicotomias para processar.  Uma macro será criada para cada variável selecionada; um conjunto MD será criado para cada conjunto selecionado.</p>
+<p class="bullet">Todas as variáveis selecionadas diretamente ou como membros do conjunto devem ter o mesmo tipo fundamental (numérico ou sequência).</p>
+</p>
+<p><span class="runinhead">Valores especiais</span> Insira os valores que são especiais para variáveis ordinárias.  Separe os valores por um espaço em branco.  Os valores da sequência de caracteres devem ser colocados entre aspas se contiverem um espaço em branco.  Valores ou variáveis especiais serão movidos para fora da ordenação de acordo com as especificações em Opções.</p>
+<p class="bullet">Esses valores não têm efeito sobre os conjuntos MD.
+</p>
+
+
+<p><span class="runinhead">Variáveis especiais</span> Selecione as variáveis que contêm valores especiais, por exemplo, um variável "outro" para conjuntos MD.  Essas variáveis serão movidas para fora da ordenação de acordo com as especificações em Opções quando os novos conjuntos forem definidos.</p>
+<p class="bullet">Esses valores não têm efeito sobre as variáveis ordinárias.
+</p>
+<p><span class="runinhead">Valores não localizados em dados e variáveis de conjunto vazio</span> Para variáveis ordinárias, marque a caixa para incluir valores com rótulo não localizados nos dados nos resultados com uma contagem igual a zero.  
+Se valores omissos forem excluídos, valores omissos com rótulo serão omitidos.</p>
+<p>Para conjuntos, isso fará com que as variáveis de componente dos conjuntos com uma contagem igual a zero seja agrupada com as outras variáveis de conjunto.  Só faz diferença se houver variáveis especiais definidas.</p>
+<p><span class="runinhead">Nomes de macro ou de conjunto MD</span> Essa caixa define os nomes dos itens criados.  Se você inserir um prefixo, os nomes de saída terão o formato<br>
+prefix_inputname<br>
+Como alternativa, é possível inserir uma lista de nomes para as saídas.
+Insira quantos nomes houver de variáveis e conjuntos selecionados.
+Para uma definição de macro, um "!" será pré-anexado ao nome.
+Para um conjunto MD, um "$" será pré-anexado.</p>
+<p class="bullet">Uma variável ou conjunto existente com o nome igual a um nome de saída será substituída, exceto que ocorrerá um erro se o tipo da variável existente não for consistente com o tipo da nova saída.</p>
+<p>Se Nenhum for selecionado, especifique um atributo customizado na caixa Atributo customizado.
+</p>
+
+<p><span class="runinhead">Atributo customizado para ordem de categoria</span>: marque a caixa para criar um atributo customizado para cada variável que especifica a ordem.
+Isso pode ser usado no código Python para gerar a sintaxe CTABLES adequada.
+Os atributos customizados podem ser exibidos na Visualização de variável do editor de dados e em outros lugares.
+Eles são salvos com o conjunto de dados, evitando a necessidade de refazer o cálculo em uma sessão futura, a menos que os dados tenham sido alterados.</p>
+<p><span class="runinhead">Nome</span>: é possível especificar o nome para o atributo customizado nesse controle.</p>
+<p>Aqui está um exemplo que usa o atributo customizado com Python</p>
+
+<p><span class="code"> STATS CATEGORY ORDER items=jobcat customattr=yes.</br>
+begin program.</br>
+import spss, spssaux</br>
+</br>
+order = spssaux.VariableDict()['jobcat'].Attributes["ORDER"]</br>
+cmd="""ctables /table jobcat</br>
+/categories variables=jobcat [%s]""" % order</br>
+spss.Submit(cmd)</br>
+end program.</br>
+</span>
+<h2>Opções</h2>
+
+<p><span class="runinhead">Ordem</span> Selecione decrescente ou crescente.  As categorias ou variáveis do conjunto serão listadas por sua contagem na direção selecionada, exceto as especiais.</p>
+
+<p><span class="runinhead">Localização de valores especiais</span> Quaisquer valores ou variáveis especiais são movidos para o fim da lista ou para o início de acordo com esta especificação.
+</p>
+<p><span class="runinhead">Valores omissos de usuário</span> Escolha se os valores omissos de usuário nos dados ou rótulos são contados ou ignorados.  
+Essa configuração é aplicada a cada variável individualmente.  Se um valor especial for também um valor omisso, ele será incluído independentemente dessa configuração.  Os valores omissos do sistema são sempre ignorados. </p>
+
+<p><span class="runinhead">Rótulos de categorias</span> Somente para conjuntos MD, escolha se os rótulos de variáveis das variáveis do conjunto ou o rótulo dos valores contados são usados para rotular o conjunto.  Isso normalmente seria igual à especificação usada quando o conjunto de entradas foi criado.</p>
+
+<h2>Recursos adicionais</h2>
+<p>
+Este diálogo gera sintaxe para o comando de extensão STATS CATEGORY ORDER. Para exibir ajuda de sintaxe para este comando, execute a seguinte sintaxe:
+</p>
+<p class="codeblock">STATS CATEGORY ORDER /HELP.</p>
+<p>Usando a sintaxe, é possível criar uma macro que liste um conjunto de variáveis na ordem da frequência de um conjunto de valores especificados.</p>
+
+<h2>Requisitos</h2>
+Este comando requer o Python Essentials. É possível fazer download dele por meio do website SPSS Community em www.ibm.com/developerworks/spssdevcentral ou de seus materiais de instalação.</p>
+
+<p style="font-size:80%;">Copyright SPSS Inc. 1989,2021</p>

@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Tworzenie makr lub zbiorów wielokrotnych dychotomii w celu sterowania porządkiem kategorii</title>
+
+  <style type="text/css">
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+  --> 
+    </style>
+</head>
+
+<body>
+<h1>Tworzenie makr lub zbiorów wielokrotnych dychotomii w celu sterowania porządkiem kategorii</h1>
+Za pomocą tej procedury można utworzyć definicje makr lub zbiory wielokrotnych dychotomii przeznaczone do użycia w tabelach niestandardowych w celu sterowania kolejnością kategorii w sposób niedostępny w ramach procedury.  Dla zmiennych zwykłych (nie zestawów wielokrotnych dychotomii)
+może również tworzyć atrybuty użytkownika utrzymujące porządek, które mogą być używane
+z wtyczką Python Programmability.
+
+<p>W tej procedurze przetwarzane są dwa typy danych wejściowych.  W przypadku zwykłych zmiennych tworzona jest definicja makro wyświetlająca listę kategorii w kolejności posortowanej wg liczebności z możliwością przenoszenia wybranych wartości w górę lub dół listy.  Typowe zastosowanie polega na przeniesieniu "innej" kategorii na dół.  Wygenerowanego makra można użyć w opcji komendy CTABLES CATEGORIES w celu określenia kolejności.  Za pomocą atrybutu użytkownika składnia opcji komedy może być generowana przy użyciu kodu Python.</p>
+<p>Drugi typ danych wejściowych stanowi co najmniej jeden zbiór wielokrotnych dychotomii.  Zbiór WD składa się z grupy zmiennych reprezentujących wybory lub atrybuty jako tak (zliczana wartość) lub nie w przypadku każdego atrybutu.  Za pomocą tej procedury można utworzyć nowy zbiór WD składający się z tej samej zmiennej oraz opcjonalnie podobnych zmiennych z listą zmiennych posortowanych wg liczebności.  Określenie zmiennych specjalnych (zazwyczaj uwzględnionych w definicji zbioru, ale nie jest to wymagane) pozwala na przemieszczenie tych zmiennych w górę lub dół listy.  Umieszczenie nowych zbiorów w tabelach niestandardowych spowoduje określenie listy zmiennych uszeregowanych w kolejności wygenerowanej przez te procedurę.</p>
+<p>
+<p class="bullet">Zmienne standardowe i zbiory WD można przetwarzać jednocześnie zgodnie ze specyfikacjami dotyczącymi danego typu.</p>
+<p class="bullet">Ta procedura jest głównie użyteczna w przypadku komendy CTABLES, ale można jej również użyć w przypadku zbiorów WD w GGRAPH.</p>
+<p class="bullet">Tej procedury nie można używać w przypadku zbiorów wielokrotnych kategorii, ale za pomocą komendy rozszerzającej STATS MCSET CONVERT zbiór WK można przekształcić do zbioru WD.</p>
+
+<p><span class="runinhead">Zmienne i zbiory WD</span> Wybierz zmienne i zestawy wielokrotnych dychotomii do przetworzenia.  Makro zostanie utworzone dla każdej wybranej zmiennej. Zbiór WD zostanie utworzony dla każdego wybranego zbioru.</p>
+<p class="bullet">Fundamentalny typ wszystkich zmiennych wybranych bezpośrednio lub jako elementy zbioru musi być taki sam (liczbowy lub łańcuchowy).</p>
+</p>
+<p><span class="runinhead">Wartości specjalne</span> Wprowadź wartości specjalne dla zmiennych zwykłych.  Wartości oddziel znakiem spacji.  Wartości łańcuchowe należy ująć w cudzysłów, o ile zawierają spację.  Wartości specjalne lub zmienne zostaną przeniesione poza kolejność sortowania zgodnie z ustawieniami określonymi w obszarze Opcje.</p>
+<p class="bullet">Te wartości nie wpływają na zbiory WD.
+</p>
+
+
+<p><span class="runinhead">Zmienne specjalne</span> Wybierz zmienne zawierające wartości specjalne, np. zmienna "other" dla zbiorów MD.  Te zmienne zostaną przeniesione poza kolejność sortowania zgodnie z ustawieniami określonymi w obszarze Opcje, gdy zostaną zdefiniowane nowe zbiory.</p>
+<p class="bullet">Te wartości nie wpływają na zwykłe zmienne.
+</p>
+<p><span class="runinhead">Wartości nieznalezione w danych i zmienne zbiorów pustych</span> W przypadku zmiennych zwykłych zaznacz pole, aby dodać wartości z etykietami, które nie zostały znalezione w danych, do wyników z liczebnością równą zero.  
+Jeśli brakujące wartości zostaną wykluczone, brakujące wartości oznaczone etykietami zostaną pominięte.</p>
+<p>W przypadku zbiorów powoduje to, że zmienne składników zbiorów o liczebności zerowej są grupowane z innymi określonymi zmiennymi.  Różnica zachodzi, tylko gdy istnieją zdefiniowane zmienne specjalne.</p>
+<p><span class="runinhead">Nazwy zestawów WD lub makro</span> Za pomocą tego pola wyboru można zdefiniować nazwy utworzonych elementów.  W przypadku wprowadzenia przedrostka nazwy wyjściowe zostaną zapisane w postaci<br>
+przedrostek_nazwaWejściowa<br>
+Można również wprowadzić listę nazw danych wyjściowych.
+Należy wprowadzić tyle nazw, ile określono zmiennych i zbiorów.
+W przypadku definicji makro znak "!" zostanie dodany przed nazwą
+w przypadku zbioru MD przed nazwą zostanie dodany znak "$".</p>
+<p class="bullet">Istniejące zmienne lub zbiory o tych samych nazwach wyjściowych zostaną zastąpione. Zostanie zgłoszony błąd, jeśli typ istniejącej zmiennej nie jest zgodny z typem nowych danych wyjściowych.</p>
+<p>Jeśli wybrano opcję Brak, określ atrybut użytkownika w polu Atrybut użytkownika.
+</p>
+
+<p><span class="runinhead">Atrybut użytkownika dla porządku kategorii</span> Zaznacz pole,
+aby utworzyć atrybut użytkownika dla każdej zmiennej, określający porządek.
+Można go użyć kodzie Python do wygenerowania odpowiedniej składni CTABLES.
+Atrybuty użytkownika można wyświetlić w widoki zmiennych w edytorze danych
+oraz w innych obszarach.
+Są one zapisywane ze zbiorem danych, co eliminuje konieczność ponownego wykonywania
+obliczeń podczas kolejnych sesji, o ile dane nie ulegną zmianie.
+</p>
+<p><span class="runinhead">Nazwa</span> W tym elemencie sterującym
+można określić nazwę atrybutu użytkownika.
+</p>
+<p>Poniżej przedstawiono przykład korzystania z atrybutu użytkownika z wtyczką Python.</p>
+
+<p><span class="code">
+STATS CATEGORY ORDER items=jobcat customattr=yes.</br>
+begin program.</br>
+import spss, spssaux</br>
+</br>
+order = spssaux.VariableDict()['jobcat'].Attributes["ORDER"]</br>
+cmd="""ctables /table jobcat</br>
+/categories variables=jobcat [%s]""" % order</br>
+spss.Submit(cmd)</br>
+end program.</br>
+</span>
+<h2>Opcje</h2>
+
+<p><span class="runinhead">Kolejność</span> Wybierz kolejność rosnącą lub malejącą.  Zmienne kategorii lub zbioru zostaną wyświetlone według ich liczby w wybranym katalogu, wyłączając zmienne specjalne.</p>
+
+<p><span class="runinhead">Lokalizacja wartości specjalnych</span> Zgodnie z tą specyfikacją wszystkie wartości specjalne lub zmienne są przenoszone na koniec lub na początek listy.
+</p>
+<p><span class="runinhead">Brakujące wartości użytkownika</span> Określ, czy brakujące wartości użytkownika w danych lub etykietach są zliczane czy ignorowane.  
+To ustawienie jest stosowane oddzielnie do każdej zmiennej.  Jeśli wartość specjalna jest również wartością brakującą, zostanie ona uwzględniona bez względu na opcję wybraną w tym ustawieniu.  Systemowe braki danych są zawsze ignorowane. </p>
+
+<p><span class="runinhead">Etykiety kategorii</span> (Tylko w przypadku zbiorów WD). Wybierz, czy etykiety zmiennych w przypadku zmiennych zbioru lub etykiety zliczonych wartości są używane w celu dodania etykiety do zbioru.  Wynik tego działania standardowo będzie taki sam jak w przypadku specyfikacji używanej podczas tworzenia zbioru danych wejściowych.</p>
+
+<h2>Funkcje dodatkowe</h2>
+<p>
+Za pomocą tego okna dialogowego można utworzyć składnię komendy rozszerzającej STATS CATEGORY ORDER. Aby wyświetlić pomoc dotyczącą składni tej komendy, uruchom następującą komendę:
+</p>
+<p class="codeblock">STATS CATEGORY ORDER /HELP.</p>
+<p>Korzystając z odpowiednich komend, można utworzyć makro generujące listę zmiennych uporządkowaną według częstości na podstawie zbioru określonych zmiennych.</p>
+
+<h2>Wymagania</h2>
+Ta komenda wymaga dodatku Python Essentials. Dodatek można pobrać za pomocą witryny SPSS Community dostępnej pod adresem www.ibm.com/developerworks/spssdevcentral lub z materiałów instalacyjnych.</p>
+
+<p style="font-size:80%;">Copyright SPSS Inc. 1989, 2021</p>

@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Creazione di macro o insieme di dicotomie multiple per controllare l'ordine delle categorie</title>
+
+  <style type="text/css">
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+  --> 
+    </style>
+</head>
+
+<body>
+<h1>Creazione di macro o insieme di dicotomie multiple per controllare l'ordine delle categorie</h1>
+Questa procedura crea le definizioni di macro o insiemi di dicotomie multiple per l'utilizzo nelle tabelle personalizzate per controllare l'ordine delle categorie al di là di quanto è integrato a tale procedura.  Per le variabili ordinarie (non insiemi di dicotomie multipli), può anche
+creare degli attributi personalizzati che contengono l'ordine che può essere utilizzato
+con la programmabilità Python.
+
+<p>La procedura elabora due tipi di input.  Per una variabile ordinaria, crea una definizione di macro che elenca le categorie ordinate per conteggio con la possibilità di spostare i valori selezionati all'inizio o alla fine dell'elenco.  Un utilizzo tipico sarebbe quello di spostare una categoria "altro " alla fine.  La macro generata può essere utilizzata nel sottocomando CTABLES CATEGORIES per specificare l'ordine.  Con un attributo personalizzato, la sintassi del sottocomando potrebbe essere generata utilizzando il codice Python.</p>
+<p>Il secondo tipo di input è uno o più insiemi di dicotomie multiple.  Un insieme di dicotomie multiple (o insieme DM) è costituito da un gruppo di variabili che rappresentano le scelte o gli attributi come sì (il valore conteggiato) o no per ciascun attributo.  La procedura crea un nuovo insieme DM composto della stessa variabile più, facoltativamente, altre variabili simili con le variabili elencate ordinate per conteggio.  Specificando le variabili speciali, generalmente ma non necessariamente incluse nella definizione dell'insieme, tali variabili possono essere spostate all'inizio o alla fine dell'elenco.  Suddividendo in tabelle personalizzate i nuovi insiemi, le variabili verranno elencate nell'ordine generato da questa procedura.</p>
+<p>
+<p class="bullet">Le variabili regolari e gli insiemi DM possono essere elaborati
+contemporaneamente, ognuno secondo le specifiche per il relativo tipo.</p>
+<p class="bullet">Questa procedura è utile principalmente per CTABLES, ma può
+anche essere utile per insiemi DM in GGRAPH.</p>
+<p class="bullet"> La procedura non può essere utilizzata con insiemi a categorie
+multiple (o CM), ma il comando di estensione STATS MCSET CONVERT può convertire un
+insieme CM in un insieme DM.</p>
+
+<p><span class="runinhead">Variabili e insiemi DM</span>
+Selezionare le variabili e gli insiemi di dicotomie multiple da elaborare.  Una macro
+verrà creata per ogni variabile selezionata, un insieme DM verrà creato per ciascun
+insieme selezionato.</p>
+<p class="bullet">Tutte le variabili selezionate direttamente o come membri dell'insieme
+devono avere lo stesso tipo fondamentale (numerico o stringa).</p>
+</p>
+<p><span class="runinhead">Valori speciali</span> Immettere i valori che sono speciali per le variabili ordinarie.  Separare i valori con uno spazio.  I valori stringa devono essere racchiusi tra apici se contengono uno spazio.  Le variabili o i valori speciali verranno esclusi dall'ordinamento in base alle specifiche in Opzioni.</p>
+<p class="bullet">Questi valori non hanno effetto sugli insiemi DM.
+</p>
+
+
+<p><span class="runinhead">Variabili speciali</span> Selezionare le variabili che contengono valori speciali, ad esempio, una variabile "altro" per insiemi DM.  Queste variabili verranno escluse dall'ordinamento in base alle specifiche in Opzioni quando i nuovi insiemi vengono definiti.</p>
+<p class="bullet">Questi valori non hanno effetto sulle variabili ordinarie.
+</p>
+<p><span class="runinhead">Valori non trovati nei dati e variabili insieme vuote</span> Per le variabili ordinarie, selezionare la casella per aggiungere i valori etichettati che non sono stati trovati nei dati ai risultati con un conteggio di zero.  
+Se i valori mancanti vengono esclusi, i valori mancanti etichettati vengono omessi.</p>
+<p>Per gli insiemi, ciò fa in modo che le variabili componente degli insiemi con un conteggio di zero siano raggruppate con altre variabili dell'insieme.  Fa la differenza solo se vi sono variabili speciali definite.</p>
+<p><span class="runinhead">Nomi di insiemi DM o macro</span> Questa casella definisce i nomi degli elementi creati.  Se si immette un prefisso, i nomi di output avranno il formato<br>
+prefisso_nomeinput<br>
+In alternativa, è possibile immettere un elenco di nomi gli output.
+Immettere tanti nomi quanti sono le variabili e gli insiemi selezionati.
+Per una definizione di macro, un "!" verrà anteposto al nome.
+Per un insieme DM, verrà anteposto "$".</p>
+<p class="bullet">Un insieme o variabile esistente con lo stesso nome
+di un nome di output verrà sostituito, eccetto nel caso in cui si verifica
+un errore se il tipo della variabile esistente non è coerente con il tipo del nuovo output.</p>
+<p>Se viene specificato Nessuno, specificare un attributo personalizzato nella casella Attributo personalizzato.
+</p>
+
+<p><span class="runinhead">Attributo personalizzato per l'ordine delle categorie</span> Selezionare
+la casella per creare un attributo personalizzato per ciascuna variabile che specifica l'ordine.
+Può essere utilizzato nel codice Python per generare la sintassi CTABLES appropriata.
+Gli attributi personalizzati possono essere visualizzati nella vista Variabile dell'Editor dei dati e
+in altre posizioni.
+Vengono salvati con il dataset, ovviando all'esigenza di rieseguire il calcolo in
+una futura sessione a meno che i dati non abbiano subito variazioni.</p>
+<p><span class="runinhead">Nome</span> È possibile specificare il nome per
+l'attributo personalizzato in questo controllo.</p>
+<p>Di seguito è riportato un esempio dell'utilizzo dell'attributo personalizzato con Python</p>
+
+<p><span class="code">
+STATS CATEGORY ORDER items=jobcat customattr=yes.</br>
+begin program.</br>
+import spss, spssaux</br>
+</br>
+order = spssaux.VariableDict()['jobcat'].Attributes["ORDER"]</br>
+cmd="""ctables /table jobcat</br>
+/categories variables=jobcat [%s]""" % order</br>
+spss.Submit(cmd)</br>
+end program.</br>
+</span>
+<h2>Opzioni</h2>
+
+<p><span class="runinhead">Ordine</span> Selezionare decrescente o crescente.  Le categorie o le variabili dell'insieme verranno elencate in base al loro conteggio nella direzione selezionata tranne che per i valori speciali.</p>
+
+<p><span class="runinhead">Ubicazione valori speciali</span> Tutti i valori o variabili speciali vengono spostati alla fine dell'elenco o all'inizio in base a questa specifica.
+</p>
+<p><span class="runinhead">Valori mancanti definiti dall'utente</span> Scegliere se i valori mancanti definiti dall'utente nei dati o nelle etichette vengono conteggiati o ignorati.  
+Questa impostazione si applicata a ciascuna variabile singolarmente.  Se un valore speciale è anche un valore mancante, verrà incluso indipendentemente da questa impostazione.  I valori mancanti del sistema vengono sempre ignorati. </p>
+
+<p><span class="runinhead">Etichette categoria</span> Solo per gli insiemi DM, scegliere se per etichettare l'insieme vengono utilizzate le etichette delle variabili dell'insieme o l'etichetta dei valori conteggiati.  Questa impostazione è generalmente la stessa della specifica utilizzata alla creazione dell'insieme di input.</p>
+
+<h2>Funzioni aggiuntive</h2>
+<p>
+Questa finestra di dialogo genera la sintassi del comando di estensione STATS CATEGORY ORDER. Per visualizzare la guida per questo comando, utilizzare la sintassi riportata di seguito:
+</p>
+<p class="codeblock">STATS CATEGORY ORDER /HELP.</p>
+<p>Utilizzando la sintassi è possibile creare una macro che elenchi un insieme di variabili in ordine di frequenza di un insieme di valori specificati.</p>
+
+<h2>Requisiti</h2>
+Questo comando richiede Python Essentials. È possibile scaricarlo tramite il sito Web SPSS Community all'indirizzo www.ibm.com/developerworks/spssdevcentral o reperirlo dal materiale di installazione.</p>
+
+<p style="font-size:80%;">Copyright SPSS Inc. 1989,2021</p>

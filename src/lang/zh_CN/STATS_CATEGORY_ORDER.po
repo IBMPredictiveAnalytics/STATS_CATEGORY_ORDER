@@ -1,174 +1,107 @@
-#/***********************************************************************
-# * Licensed Materials - Property of IBM 
-# *
-# * IBM SPSS Products: Statistics Common
-# *
-# * (C) Copyright IBM Corp. 1989, 2014
-# *
-# * US Government Users Restricted Rights - Use, duplication or disclosure
-# * restricted by GSA ADP Schedule Contract with IBM Corp. 
-# ************************************************************************/
-
-# NLS_ENCODING=UTF-8
-# IBMUPYTH
-
-
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR ORGANIZATION
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Translations template for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
+
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-11-27 16:39+China Standard Time\n"
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-10-11 00:54-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
-"Generated-By: pygettext.py 1.5\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Globalization Pipeline\n"
 
-
-#: STATS_CATEGORY_ORDER.py:131
 msgid "Either a  prefix or a set of macro or MR set names must be specified"
-msgstr ""
-"必须指定前缀或者指定一组宏名称或 MR 集合名称"
+msgstr "必须指定前缀或者指定一组宏名称或 MR 集合名称"
 
-#: STATS_CATEGORY_ORDER.py:135
-msgid "The number of macro or MR set names specified is different from the number of items"
-msgstr ""
-"指定的宏名称或 MR 集合名称的数目与项数不同"
+msgid ""
+"The number of macro or MR set names specified is different from the number of "
+msgstr "指定的宏名称或 MR 集合名称的数目与项数不同"
 
-#: STATS_CATEGORY_ORDER.py:146
 msgid "Items to process must be either all numeric or all string"
-msgstr ""
-"要处理的项必须全是数字或字符串"
+msgstr "要处理的项必须全是数字或字符串"
 
-#: STATS_CATEGORY_ORDER.py:151
 msgid "A nonnumeric special value was given for numeric variables"
-msgstr ""
-"对数字变量指定了非数字特殊值"
+msgstr "对数字变量指定了非数字特殊值"
 
-#: STATS_CATEGORY_ORDER.py:168
 msgid "Name"
-msgstr ""
-"名称"
+msgstr "名称"
 
-#: STATS_CATEGORY_ORDER.py:169
 msgid "Definition"
-msgstr ""
-"定义"
+msgstr "定义"
 
-#: STATS_CATEGORY_ORDER.py:184
 msgid "ITEMS and NAMES cannot be used with COUNTORDERING specifications."
-msgstr ""
-"无法将 ITEMS 和 NAMES 与指定的 COUNTORDERING 配合使用。"
+msgstr "无法将 ITEMS 和 NAMES 与指定的 COUNTORDERING 配合使用。"
 
-#: STATS_CATEGORY_ORDER.py:186
-msgid "Values to count must and a macroname must be specified when using COUNTORDERING specifications."
-msgstr ""
-"使用指定的 COUNTORDERING 时，必须指定要计数的值和宏名称。"
+msgid ""
+"Values to count must and a macroname must be specified when using "
+"COUNTORDERING specifications."
+msgstr "使用指定的 COUNTORDERING 时，必须指定要计数的值和宏名称。"
 
-#: STATS_CATEGORY_ORDER.py:241
 msgid "The weight variable cannot be included as a variable."
-msgstr ""
-"不得包括权重变量作为变量。"
+msgstr "不得包括权重变量作为变量。"
 
-#: STATS_CATEGORY_ORDER.py:316
-msgid "The specified set is a multiple category set.  Only multiple dichotomy sets can be used: %s"
-msgstr ""
-"指定的集合是多类别集。只能使用多二分集：%s"
+msgid ""
+"The specified set is a multiple category set.  Only multiple dichotomy sets "
+"can be used: %s"
+msgstr "指定的集合是多类别集。只能使用多二分集：%s"
 
-#: STATS_CATEGORY_ORDER.py:319
 msgid "The weight variable cannot be included in an MR set."
-msgstr ""
-"在 MR 集合中不得包括权重变量。"
+msgstr "在 MR 集合中不得包括权重变量。"
 
-#: STATS_CATEGORY_ORDER.py:376
 msgid "Variable must all be of the same type"
-msgstr ""
-"所有变量必须具有同一类型"
+msgstr "所有变量必须具有同一类型"
 
-#: STATS_CATEGORY_ORDER.py:382
 msgid "A non-numeric value to count was specified for a numeric variable"
-msgstr ""
-"对数字变量指定了要计数的非数字值"
+msgstr "对数字变量指定了要计数的非数字值"
 
-#: STATS_CATEGORY_ORDER.py:415
 msgid "No valid cases were found"
-msgstr ""
-"未找到任何有效个案"
+msgstr "未找到任何有效个案"
 
-#: STATS_CATEGORY_ORDER.py:426
 msgid "No variables meet the count or percentage threshold"
-msgstr ""
-"没有符合计数或百分比阈值的变量"
+msgstr "没有符合计数或百分比阈值的变量"
 
-#: STATS_CATEGORY_ORDER.py:438
 msgid "Minimum count: < %s"
-msgstr ""
-"最小计数：< %s"
+msgstr "最小计数：< %s"
 
-#: STATS_CATEGORY_ORDER.py:438
 msgid "Minimum percentage: < %s"
-msgstr ""
-"最小百分比：< %s"
+msgstr "最小百分比：< %s"
 
-#: STATS_CATEGORY_ORDER.py:440
 msgid "Maximum count: >= %s"
-msgstr ""
-"最大计数：>= %s"
+msgstr "最大计数：>= %s"
 
-#: STATS_CATEGORY_ORDER.py:442
 msgid "Maximum percentage: >= %s"
-msgstr ""
-"最大百分比：>= %s"
+msgstr "最大百分比：>= %s"
 
-#: STATS_CATEGORY_ORDER.py:443
 msgid "Variables excluded: %s"
-msgstr ""
-"已排除的变量：%s"
+msgstr "已排除的变量：%s"
 
-#: STATS_CATEGORY_ORDER.py:451
 msgid "Macro Definition: %s"
-msgstr ""
-"宏定义：%s"
+msgstr "宏定义：%s"
 
-#: STATS_CATEGORY_ORDER.py:459
 msgid "Variables"
-msgstr ""
-"变量"
+msgstr "变量"
 
-#: STATS_CATEGORY_ORDER.py:461 STATS_CATEGORY_ORDER.py:477
 msgid "Counts"
-msgstr ""
-"计数(T)"
+msgstr "计数(T)"
 
-#: STATS_CATEGORY_ORDER.py:466
 msgid "Excluded Variables for Macro Definition: %s"
-msgstr ""
-"宏定义的已排除变量：%s"
+msgstr "宏定义的已排除变量：%s"
 
-#: STATS_CATEGORY_ORDER.py:475
 msgid "Excluded Variables"
-msgstr ""
-"排除的变量"
+msgstr "排除的变量"
 
-#: STATS_CATEGORY_ORDER.py:633
 msgid "Variable not found: %s"
-msgstr ""
-"找不到变量：%s"
+msgstr "找不到变量：%s"
 
-#: STATS_CATEGORY_ORDER.py:644
 msgid "MR set not found: %s"
-msgstr ""
-"找不到 MR 集合：%s"
+msgstr "找不到 MR 集合：%s"
 
-#: STATS_CATEGORY_ORDER.py:704
 msgid "---"
-msgstr ""
-"---"
-
-
-
+msgstr "---"
