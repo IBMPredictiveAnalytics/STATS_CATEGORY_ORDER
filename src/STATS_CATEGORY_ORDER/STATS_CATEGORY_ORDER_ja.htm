@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <title>カテゴリの順序を制御するマクロまたは多重 2 分グループの作成</title>
+
+  <style type="text/css">
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+  --> 
+    </style>
+</head>
+
+<body>
+<h1>カテゴリの順序を制御するマクロまたは多重 2 分グループの作成</h1>
+この手順では、カスタム テーブルでは直接制御できないカテゴリの順序を制御するために使用するマクロ定義または多重 2 分グループを作成します。
+多重 2 分グループではなく、通常の変数の場合は、Python programmability で使用できる順序を保持するカスタム属性を作成することもできます。
+
+<p>この手順では 2 つのタイプの入力が処理されます。通常の変数の場合は、カテゴリを度数の順にソートし、選択された値をリストの最上位または最下位に移動することができるマクロ定義が作成されます。よくある使い方として、「その他」カテゴリを最下位に移動することが挙げられます。生成されたマクロは、CTABLES CATEGORIES サブコマンドで順序を指定するために使用できます。カスタム属性を使用すると、Python コードを使用してサブコマンドのシンタックスを生成できます。</p>
+<p>もう 1 つのタイプの入力は、1 つ以上の多重 2 分グループ (MD グループ) です。MD グループは、各属性に対する yes (カウントされる値) または no の選択肢または属性を表す変数のグループで構成されます。この手順では、同じ変数およびその他の類似する変数 (オプション) で構成される新しい MD グループが作成され、その際にそれらの変数が度数の順にソートされてリストされます。グループ定義に通常含まれている (ただし必須ではない) 特殊変数を指定することで、これらの変数をリストの最上位または最下位に移動することができます。新しいグループをカスタム テーブルで作表すると、この手順で生成された順に変数がリストされます。</p>
+<p>
+<p class="bullet">通常の変数と MD グループの両方を、それぞれのタイプの仕様に従って同時に処理することができます。</p>
+<p class="bullet">この手順は主に CTABLES で利用しますが、GGRAPH で MD グループを扱う際に役立つこともあります。</p>
+<p class="bullet">多重カテゴリ グループにはこの手順を使用できませんが、STATS MCSET CONVERT 拡張コマンドで多重カテゴリ グループを MD グループに変換することができます。</p>
+
+<p><span class="runinhead">変数と MD グループ:</span> 処理対象の変数および多重 2 分グループを選択します。選択した変数ごとにマクロが作成され、選択したグループごとに MD グループが作成されます。</p>
+<p class="bullet">直接選択される変数またはグループ メンバーとして選択される変数はすべて、基本の型 (数値型または文字型) が同じでなければなりません。</p>
+</p>
+<p><span class="runinhead">特殊値:</span> 通常の変数には特殊である値を入力します。値は空白で区切ります。文字列値に空白が含まれる場合は、値を引用符で囲む必要があります。特殊値または特殊変数は、「オプション」での指定に従ってソート順から除外されます。</p>
+<p class="bullet">これらの値は MD グループに影響しません。
+</p>
+
+
+<p><span class="runinhead">特殊変数:</span> 特殊値を含んでいる変数を選択します (例えば MD グループの「その他」変数など)。これらの変数は、新しいグループが定義されるときの「オプション」の指定に従って、ソート順から除外されます。</p>
+<p class="bullet">これらの値は通常の変数に影響しません。
+</p>
+<p><span class="runinhead">データで見つからない値および空のグループ変数:</span> 通常の変数で、データ内で見つからないラベル付きの値を度数がゼロの結果に追加する場合は、このボックスにチェック マークを付けます。
+欠損値が除外される場合は、ラベル付きの欠損値が除外されます。</p>
+<p>グループでは、度数がゼロであるグループのコンポーネント変数が、他のグループ変数と共にグループ化されます。これによって相違が生じるのは、特殊変数が定義されている場合だけです。</p>
+<p><span class="runinhead">マクロまたは MD グループの名前:</span> このボックスでは、作成される項目の名前を定義します。接頭辞を入力すると、出力名が次の形式になります。<br>
+prefix_inputname<br>
+あるいは、一連の出力名を入力できます。
+選択される変数およびグループと同じ数の名前を入力します。
+マクロ定義の場合は、名前の前に「!」が付加されます。
+MD グループの場合は、「$」が前に付加されます。</p>
+<p class="bullet">出力名と同じ名前の既存の変数またはグループは、既存の変数の型が新しい出力の型と一致しないためにエラーが発生した場合を除いて置換されます。</p>
+<p>「なし」を選択した場合は、「カスタム属性」ボックスにカスタム属性を指定します。
+</p>
+
+<p><span class="runinhead">カテゴリの順序のカスタム属性</span> 順序を指定して各変数のカスタム属性を作成するには、このボックスにチェック マークを付けます。
+これを Python コードで使用して、適切な CTABLES シンタックスを生成できます。
+カスタム属性は、データ エディタの変数ビューなどに表示できます。
+カスタム属性はデータセットとともに保存されるため、データが変化しない限り、その後のセッションで計算を再実行する必要はありません。</p>
+<p><span class="runinhead">名前</span> このコントロールでカスタム属性の名前を指定できます。</p>
+<p>Python でカスタム属性を使用する例を以下に示します。</p>
+
+<p><span class="code">
+STATS CATEGORY ORDER items=jobcat customattr=yes.</br>
+begin program.</br>
+import spss, spssaux</br>
+</br>
+order = spssaux.VariableDict()['jobcat'].Attributes["ORDER"]</br>
+cmd="""ctables /table jobcat</br>
+/categories variables=jobcat [%s]""" % order</br>
+spss.Submit(cmd)</br>
+end program.</br>
+</span>
+<h2>オプション</h2>
+
+<p><span class="runinhead">順序:</span> 降順または昇順を選択します。カテゴリまたはグループ変数は、特殊なものを除いて、その度数の降順または昇順にリストされます。</p>
+
+<p><span class="runinhead">特殊値の位置:</span> 特殊値または特殊変数は、この指定に従ってリストの末尾または先頭に移動されます。
+</p>
+<p><span class="runinhead">ユーザー欠損値:</span> データ内のユーザー欠損値またはラベルをカウントするか無視するかを選択します。
+この設定は、各変数に個別に適用されます。特殊値が欠損値でもある場合は、この設定にかかわらずその値がカウントされます。システム欠損値は常に無視されます。</p>
+
+<p><span class="runinhead">カテゴリ ラベル:</span> MD グループの場合にのみ、グループ変数の変数ラベルまたはカウントされた値のラベルのどちらを使用してグループにラベルを付けるかを選択します。通常は、入力グループの作成時に使用された指定と同じです。</p>
+
+<h2>その他の機能</h2>
+<p>
+このダイアログでは、STATS CATEGORY ORDER 拡張コマンドのシンタックスが生成されます。このコマンドのシンタックスのヘルプを表示するには、次のシンタックスを実行します。</p>
+<p class="codeblock">STATS CATEGORY ORDER /HELP.</p>
+<p>シンタックスを使用して、指定された値のセットの度数順に変数のグループをリストするマクロを作成できます。</p>
+
+<h2>要件</h2>
+このコマンドには Python Essentials が必要です。
+Python Essentials は SPSS Community Web サイト (www.ibm.com/developerworks/spssdevcentral) からダウンロードできるほか、インストール資料にも収録されています。
+
+</p>
+
+<p style="font-size:80%;">Copyright SPSS Inc. 1989,2021</p>

@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>建立巨集或多重二分集以控制種類順序</title>
+
+  <style type="text/css">
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+  --> 
+    </style>
+</head>
+
+<body>
+<h1>建立巨集或多重二分集以控制種類順序</h1>
+此程序會建立在「自訂表格」中使用的巨集定義或多重二分集，以便在該程序內建的種類順序之外控制種類順序。
+對於一般變數（非多重二分法集），它也可以建立自訂屬性，以保留可以與 Python 程式設計能力搭配使用的順序。
+
+<p>該程序會處理兩種輸入類型。對於尋常變數，它會建立巨集定義，可按計數的排序順序列出種類，還可以將選取的值移至清單頂端或底端。一般用法是將「其他」種類移至底端。您可以在 CTABLES CATEGORIES 次指令中使用產生的巨集來指定順序。使用自訂屬性時，可以使用 Python 程式碼產生次指令語法。</p>
+<p>第二種類型的輸入是一或多個多重二分集。MD 集由一組變數組成，這些變數將每一個屬性的選擇或屬性呈現為是（計數值）或否。此程序會建立新 MD 集，其中包含相同的變數，以及與按排序的計數順序列出的變數類似的其他可選變數。透過指定特殊變數（通常會併入集定義中，但並非一定如此），可將這些變數移至清單頂端或底端。如果使用自訂表格來表格化新集，將按此程序產生的順序列出變數。</p>
+<p>
+<p class="bullet">您可以同時處理一般變數及 MD 集，並且每一個都是根據其類型的規格進行處理。</p>
+<p class="bullet">此程序主要用於 CTABLES，但也可用於 GGRAPH 中的 MD 集。</p>
+<p class="bullet">此程序無法與多個種類集搭配使用，但 STATS MCSET CONVERT 延伸指令可以將 MC 集轉換為 MD 集。</p>
+
+<p><span class="runinhead">變數及 MD 集</span>
+選取要處理的變數及多重二分集。系統會為選取的每一個變數建立巨集；為選取的每一個集建立 MD 集。</p>
+<p class="bullet">直接或作為集成員選取的所有變數都必須具有相同的基本類型（數值或字串）。</p>
+</p>
+<p><span class="runinhead">特殊值</span>
+輸入對尋常變數來說具有特殊性的值。以空白區隔值。如果字串值含有空白，應將字串值用引號括住。系統會根據「選項」中的規格將特殊值或變數從排序順序中移出。</p>
+<p class="bullet">這些值對 MD 集沒有影響。
+</p>
+
+
+<p><span class="runinhead">特殊變數</span> 選取包含特殊值的變數，例如，MD 集的「其他」變數。定義新集時，系統會根據「選項」中的規格將這些變數從排序順序中移出。</p>
+<p class="bullet">這些值對尋常變數沒有影響。
+</p>
+<p><span class="runinhead">在資料及空集變數中找不到值</span> 對於尋常變數，勾選此方框可將資料中找不到的標籤值新增至計數為零的結果。
+如果已排除遺漏值，系統會省略標示的遺漏值。</p>
+<p>對於集，這會導致計數為零的集的成分變數與其他集變數分組在一起。它僅在已定義特殊變數時有所不同。</p>
+<p><span class="runinhead">巨集或 MD 集名稱</span> 此方框定義建立的項目的名稱。如果輸入字首，輸出名稱的格式將為<br>
+prefix_inputname<br>
+或者，您也可以輸入輸出的名稱清單。
+輸入與選取的變數和集一樣多的名稱。
+對於巨集定義，"!" 將附加到名稱的前面。
+對於 MD 集，前面將附加 "$"。</p>
+<p class="bullet">名稱與輸出名稱相同的現有變數或集將被取代，但例外情況是，如果現有變數的類型與新輸出的類型不一致，將會發生錯誤。</p>
+<p>如果選取「無」，請在「自訂屬性」方框中指定自訂屬性。</p>
+
+<p><span class="runinhead">種類順序的自訂屬性</span> 勾選該方框以建立每一個指定順序的變數的自訂屬性。這可以在 Python 程式碼中使用，以產生適當的 CTABLES 語法。自訂屬性可以顯示在「資料編輯器變數視圖」中及其他位置。它們會與資料集一起儲存，無需在未來的階段作業中重做計算，除非資料已變更。</p>
+<p><span class="runinhead">名稱</span> 您可以在此控制項中指定自訂屬性的名稱。</p>
+<p>以下是搭配使用自訂屬性與 Python 的範例</p>
+
+<p><span class="code">
+STATS CATEGORY ORDER items=jobcat customattr=yes.</br>
+begin program.</br>
+import spss, spssaux</br>
+</br>
+order = spssaux.VariableDict()['jobcat'].Attributes["ORDER"]</br>
+cmd="""ctables /table jobcat</br>
+/categories variables=jobcat [%s]""" % order</br>
+spss.Submit(cmd)</br>
+end program.</br>
+</span>
+<h2>選項</h2>
+
+<p><span class="runinhead">順序</span> 選取遞減或遞增。將按選取的方向依計數列出種類或集變數，但特殊項目除外。</p>
+
+<p><span class="runinhead">特殊值位置</span> 系統會根據此規格將任何特殊值或變數移至清單結尾或開頭。
+</p>
+<p><span class="runinhead">使用者遺漏值</span> 選擇是計數還是忽略資料或標籤中的使用者遺漏值。
+此設定會個別地套用至每一個變數。如果特殊值也是遺漏值，則無論此設定為何，都會將該值併入。一律忽略系統遺漏值。</p>
+
+<p><span class="runinhead">種類標籤</span> 僅對於 MD 集，選擇是使用集變數的變數標籤還是使用計數值的標籤來標示集。這通常與在建立輸入集時使用的規格相同。</p>
+
+<h2>其他特性</h2>
+<p>
+此對話框會產生 STATS CATEGORY ORDER 延伸指令的語法。若要顯示此指令的語法說明，請執行下列語法：</p>
+<p class="codeblock">STATS CATEGORY ORDER /HELP.</p>
+<p>使用語法，您可以建立巨集，依一組指定值的次數順序列出變數集。</p>
+
+<h2>需求</h2>
+此指令需要 Python Essentials。您可以透過 SPSS 社群網站 (www.ibm.com/developerworks/spssdevcentral)，或者從安裝資料中下載它們。</p>
+
+<p style="font-size:80%;">Copyright SPSS Inc. 1989,2021</p>

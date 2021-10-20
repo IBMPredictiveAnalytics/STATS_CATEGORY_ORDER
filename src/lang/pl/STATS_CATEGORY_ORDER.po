@@ -1,174 +1,113 @@
-#/***********************************************************************
-# * Licensed Materials - Property of IBM 
-# *
-# * IBM SPSS Products: Statistics Common
-# *
-# * (C) Copyright IBM Corp. 1989, 2014
-# *
-# * US Government Users Restricted Rights - Use, duplication or disclosure
-# * restricted by GSA ADP Schedule Contract with IBM Corp. 
-# ************************************************************************/
-
-# NLS_ENCODING=UTF-8
-# IBMUPYTH
-
-
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR ORGANIZATION
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Translations template for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
+
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-11-27 16:39+China Standard Time\n"
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-10-11 00:54-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
-"Generated-By: pygettext.py 1.5\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Globalization Pipeline\n"
 
-
-#: STATS_CATEGORY_ORDER.py:131
 msgid "Either a  prefix or a set of macro or MR set names must be specified"
-msgstr ""
-"Należy określić przedrostek, zbiór nazw makr lub zbiorów MR"
+msgstr "Należy określić przedrostek, zbiór nazw makr lub zbiorów MR"
 
-#: STATS_CATEGORY_ORDER.py:135
-msgid "The number of macro or MR set names specified is different from the number of items"
+msgid ""
+"The number of macro or MR set names specified is different from the number of "
 msgstr ""
 "Określona liczba nazw makr lub zbiorów MR jest inna niż liczba elementów"
 
-#: STATS_CATEGORY_ORDER.py:146
 msgid "Items to process must be either all numeric or all string"
-msgstr ""
-"Wszystkie elementy do przetworzenia muszą być liczbowe lub łańcuchowe"
+msgstr "Wszystkie elementy do przetworzenia muszą być liczbowe lub łańcuchowe"
 
-#: STATS_CATEGORY_ORDER.py:151
 msgid "A nonnumeric special value was given for numeric variables"
-msgstr ""
-"W przypadku zmiennych liczbowych podano nieliczbową wartość specjalną"
+msgstr "W przypadku zmiennych liczbowych podano nieliczbową wartość specjalną"
 
-#: STATS_CATEGORY_ORDER.py:168
 msgid "Name"
-msgstr ""
-"Nazwa"
+msgstr "Nazwa"
 
-#: STATS_CATEGORY_ORDER.py:169
 msgid "Definition"
-msgstr ""
-"Definicja"
+msgstr "Definicja"
 
-#: STATS_CATEGORY_ORDER.py:184
 msgid "ITEMS and NAMES cannot be used with COUNTORDERING specifications."
-msgstr ""
-"Pozycji ITEMS i NAMES nie można używać ze specyfikacją COUNTORDERING."
+msgstr "Pozycji ITEMS i NAMES nie można używać ze specyfikacją COUNTORDERING."
 
-#: STATS_CATEGORY_ORDER.py:186
-msgid "Values to count must and a macroname must be specified when using COUNTORDERING specifications."
+msgid ""
+"Values to count must and a macroname must be specified when using "
+"COUNTORDERING specifications."
 msgstr ""
-"W przypadku korzystania ze specyfikacji COUNTORDERING wymagane jest określenie wartości do zliczenia i nazwy MACRONAME."
+"W przypadku korzystania ze specyfikacji COUNTORDERING wymagane jest określenie"
+" wartości do zliczenia i nazwy MACRONAME."
 
-#: STATS_CATEGORY_ORDER.py:241
 msgid "The weight variable cannot be included as a variable."
-msgstr ""
-"Zmiennej ważącej nie można uwzględnić jako zmiennej."
+msgstr "Zmiennej ważącej nie można uwzględnić jako zmiennej."
 
-#: STATS_CATEGORY_ORDER.py:316
-msgid "The specified set is a multiple category set.  Only multiple dichotomy sets can be used: %s"
+msgid ""
+"The specified set is a multiple category set.  Only multiple dichotomy sets "
+"can be used: %s"
 msgstr ""
-"Określony zbiór jest zestawem wielokrotnych kategorii. Można używać tylko zestawów wielokrotnych dychotomii: %s"
+"Określony zbiór jest zestawem wielokrotnych kategorii. Można używać tylko "
+"zestawów wielokrotnych dychotomii: %s"
 
-#: STATS_CATEGORY_ORDER.py:319
 msgid "The weight variable cannot be included in an MR set."
-msgstr ""
-"Zmiennej ważącej nie można uwzględnić w zbiorze MR."
+msgstr "Zmiennej ważącej nie można uwzględnić w zbiorze MR."
 
-#: STATS_CATEGORY_ORDER.py:376
 msgid "Variable must all be of the same type"
-msgstr ""
-"Wszystkie zmienne muszą być tego samego typu"
+msgstr "Wszystkie zmienne muszą być tego samego typu"
 
-#: STATS_CATEGORY_ORDER.py:382
 msgid "A non-numeric value to count was specified for a numeric variable"
-msgstr ""
-"Dla zmiennej liczbowej określono nieliczbową wartość do zliczania"
+msgstr "Dla zmiennej liczbowej określono nieliczbową wartość do zliczania"
 
-#: STATS_CATEGORY_ORDER.py:415
 msgid "No valid cases were found"
-msgstr ""
-"Nie znaleziono żadnych ważnych obserwacji"
+msgstr "Nie znaleziono żadnych ważnych obserwacji"
 
-#: STATS_CATEGORY_ORDER.py:426
 msgid "No variables meet the count or percentage threshold"
 msgstr ""
-"Żadna ze zmiennych nie spełnia wymogu dotyczącego liczebności ani wartości procentowej"
+"Żadna ze zmiennych nie spełnia wymogu dotyczącego liczebności ani wartości "
 
-#: STATS_CATEGORY_ORDER.py:438
 msgid "Minimum count: < %s"
-msgstr ""
-"Minimalna liczebność: < %s"
+msgstr "Minimalna liczebność: < %s"
 
-#: STATS_CATEGORY_ORDER.py:438
 msgid "Minimum percentage: < %s"
-msgstr ""
-"Minimalna wartość procentowa: < %s"
+msgstr "Minimalna wartość procentowa: < %s"
 
-#: STATS_CATEGORY_ORDER.py:440
 msgid "Maximum count: >= %s"
-msgstr ""
-"Maksymalna liczebność: >= %s"
+msgstr "Maksymalna liczebność: >= %s"
 
-#: STATS_CATEGORY_ORDER.py:442
 msgid "Maximum percentage: >= %s"
-msgstr ""
-"Maksymalna wartość procentowa: >= %s"
+msgstr "Maksymalna wartość procentowa: >= %s"
 
-#: STATS_CATEGORY_ORDER.py:443
 msgid "Variables excluded: %s"
-msgstr ""
-"Wykluczone zmienne: %s"
+msgstr "Wykluczone zmienne: %s"
 
-#: STATS_CATEGORY_ORDER.py:451
 msgid "Macro Definition: %s"
-msgstr ""
-"Definicja makra: %s"
+msgstr "Definicja makra: %s"
 
-#: STATS_CATEGORY_ORDER.py:459
 msgid "Variables"
-msgstr ""
-"Zmienne"
+msgstr "Zmienne"
 
-#: STATS_CATEGORY_ORDER.py:461 STATS_CATEGORY_ORDER.py:477
 msgid "Counts"
-msgstr ""
-"Liczebności"
+msgstr "Liczebności"
 
-#: STATS_CATEGORY_ORDER.py:466
 msgid "Excluded Variables for Macro Definition: %s"
-msgstr ""
-"Zmienne wykluczone dla definicji makra: %s"
+msgstr "Zmienne wykluczone dla definicji makra: %s"
 
-#: STATS_CATEGORY_ORDER.py:475
 msgid "Excluded Variables"
-msgstr ""
-"Zmienne wykluczone"
+msgstr "Zmienne wykluczone"
 
-#: STATS_CATEGORY_ORDER.py:633
 msgid "Variable not found: %s"
-msgstr ""
-"Nie znaleziono zmiennej: %s"
+msgstr "Nie znaleziono zmiennej: %s"
 
-#: STATS_CATEGORY_ORDER.py:644
 msgid "MR set not found: %s"
-msgstr ""
-"Nie znaleziono zbioru MR: %s"
+msgstr "Nie znaleziono zbioru MR: %s"
 
-#: STATS_CATEGORY_ORDER.py:704
 msgid "---"
-msgstr ""
-"---"
-
-
-
+msgstr "---"

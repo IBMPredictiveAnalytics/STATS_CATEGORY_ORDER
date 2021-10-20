@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><Extension debug="false" version="1.0" xmlns="http://spss.com/clementine/extensions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://spss.com/clementine/extensions http://xml.spss.com/clementine/extensions/CLEFSpecificationFile.xsd">
+  <ExtensionDetails copyright="Licensed Materials - Property of IBM.  IBM SPSS Products: Statistics Common (C) Copyright IBM Corp. 1989, 2016.  US Government Users Restricted Rights - Use, duplication or  disclosure restricted by GSA ADP Schedule Contract with IBM Corp." description="" id="STATS_CATEGORY_ORDER" label="" provider="SPSS, Inc." providerTag="spss" version="1.0"/>
+  <Resources>
+    <Bundle id="bundle1" path="STATS_CATEGORY_ORDER" type="properties"/>
+  </Resources>
+  <CommonObjects>
+    <Actions>
+      <Action id="STATS_CATEGORY_ORDER_action" imagePath="IBMdialogicon.png" label="Define Category Order" labelKey="STATS_CATEGORY_ORDER_action.LABEL"/>
+    </Actions>
+  </CommonObjects>
+  <UserInterface>
+    <Controls>
+      <MenuItem action="STATS_CATEGORY_ORDER_action" offset="2" previousId="" showIcon="true" spssMenu="Analyze.analyze_tables"/>
+    </Controls>
+  </UserInterface>
+  <Node id="STATS_CATEGORY_ORDER" label="Define Category Order" labelKey="STATS_CATEGORY_ORDER.LABEL" type="modelBuilder">
+    <Properties>
+      <Property addOns="[Python]" name="STATS_CATEGORY_ORDER" syntax="STATS CATEGORY ORDER %%items%% %%names%% %%specialvalues%% %%specialvars%%  %%other%% %%customattr%% %%attrname%%&#10;/OPTIONS %%order%% %%categorylabels%% %%specialsorder%% %%missingvalues%%&#10;"/>
+      <Property description="false" name="STATS_CATEGORY_ORDER_modal"/>
+      <Property description="" descriptionKey="source_vars_tooltip.LABEL" isList="true" label="Variables:" labelKey="source_vars.LABEL" name="source_vars" selectionPool="source_fields" syntax="%%ThisValue%%" valueType="field"/>
+      <Property description="Select the variables and MD sets (multiple dichotomies only) to process" descriptionKey="items_tooltip.LABEL" isList="true" isRequired="true" label="Variables and MD Sets:" labelKey="items.LABEL" name="items" selectionPool="source_fields" syntax="ITEMS=%%ThisValue%%" valueType="field"/>
+      <Property description="Select variables in sets or to be added whose values should be treated as specials" descriptionKey="specialvars_tooltip.LABEL" isList="true" label="Special Variables (MD Sets Only):" labelKey="specialvars.LABEL" name="specialvars" selectionPool="source_fields" syntax="SPECIALVARS=%%ThisValue%%" valueType="field"/>
+      <Property defaultValue="" description="List the special values for regular variables that are special separated by a blank." descriptionKey="specialvalues_tooltip.LABEL" label="Special Values (Variables Only):" labelKey="specialvalues.LABEL" name="specialvalues" syntax="SPECIALVALUES=%%ThisValue%%" valueType="string"/>
+      <Property defaultValue="prefixrn" description="Specify naming rules for output macros and sets. ! will be prepended for macros and $ for set names" descriptionKey="names_tooltip.LABEL" label="Macro or MD Set Names" labelKey="names.LABEL" name="names" syntax="%%ThisValue%%" valueType="enum">
+        <Enumeration>
+          <Enum description="Use prefix on output macros and set definitions" descriptionKey="prefixrn_tooltip.LABEL" hasSubGroup="true" label="Prefix:" labelKey="prefixrn.LABEL" mnemonic="X" mnemonicKey="prefixrn_mnemonic.VALUE" syntax="PREFIX=%%ThisValue%%" value="prefixrn"/>
+          <Enum description="Enter list of names, one for each macro or set, separated by a blank" descriptionKey="onamesrb_tooltip.LABEL" hasSubGroup="true" label="List of Names:" labelKey="onamesrb.LABEL" mnemonic="L" mnemonicKey="onamesrb_mnemonic.VALUE" syntax="NAMES=%%ThisValue%%" value="onamesrb"/>
+          <Enum description="Specify a custom attribute instead" descriptionKey="none_tooltip.LABEL" hasSubGroup="false" label="None" labelKey="none.LABEL" mnemonic="N" mnemonicKey="none_mnemonic.VALUE" value="none"/>
+        </Enumeration>
+      </Property>
+      <Property defaultValue="" description="" descriptionKey="item_564_tooltip.LABEL" label="" labelKey="item_564.LABEL" name="item_564" syntax="%%ThisValue%%" valueType="fieldName"/>
+      <Property defaultValue="" description="" descriptionKey="item_565_tooltip.LABEL" isRequired="true" label="" labelKey="item_565.LABEL" name="item_565" syntax="%%ThisValue%%" valueType="fieldName"/>
+      <Property defaultValue="descending" description="" descriptionKey="order_tooltip.LABEL" label="Order" labelKey="order.LABEL" name="order" syntax="ORDER=%%ThisValue%%" valueType="enum">
+        <Enumeration>
+          <Enum description="" descriptionKey="descending_tooltip.LABEL" hasSubGroup="false" label="Descending" labelKey="descending.LABEL" mnemonic="D" mnemonicKey="descending_mnemonic.VALUE" syntax="D" value="descending"/>
+          <Enum description="" descriptionKey="ascending_tooltip.LABEL" hasSubGroup="false" label="Ascending" labelKey="ascending.LABEL" mnemonic="A" mnemonicKey="ascending_mnemonic.VALUE" syntax="A" value="ascending"/>
+        </Enumeration>
+      </Property>
+      <Property defaultValue="varlabels" description="" descriptionKey="categorylabels_tooltip.LABEL" label="Category Labels (MD Sets  Only)" labelKey="categorylabels.LABEL" name="categorylabels" syntax="CATEGORYLABELS=%%ThisValue%%" valueType="enum">
+        <Enumeration>
+          <Enum description="" descriptionKey="varlabels_tooltip.LABEL" hasSubGroup="false" label="Variable Labels" labelKey="varlabels.LABEL" mnemonic="V" mnemonicKey="varlabels_mnemonic.VALUE" syntax="VARLABELS" value="varlabels"/>
+          <Enum description="" descriptionKey="countedvalues_tooltip.LABEL" hasSubGroup="false" label="Counted Values" labelKey="countedvalues.LABEL" mnemonic="C" mnemonicKey="countedvalues_mnemonic.VALUE" syntax="COUNTEDVALUES" value="countedvalues"/>
+        </Enumeration>
+      </Property>
+      <Property defaultValue="after" description="" descriptionKey="specialsorder_tooltip.LABEL" label="Special Values Location" labelKey="specialsorder.LABEL" name="specialsorder" syntax="SPECIALSLOC=%%ThisValue%%" valueType="enum">
+        <Enumeration>
+          <Enum description="" descriptionKey="after_tooltip.LABEL" hasSubGroup="false" label="After other values" labelKey="after.LABEL" mnemonic="F" mnemonicKey="after_mnemonic.VALUE" syntax="AFTER" value="after"/>
+          <Enum description="" descriptionKey="before_tooltip.LABEL" hasSubGroup="false" label="Before other values" labelKey="before.LABEL" mnemonic="B" mnemonicKey="before_mnemonic.VALUE" syntax="BEFORE" value="before"/>
+        </Enumeration>
+      </Property>
+      <Property defaultValue="exclude" description="" descriptionKey="missingvalues_tooltip.LABEL" label="User Missing Values" labelKey="missingvalues.LABEL" name="missingvalues" syntax="MISSING=%%ThisValue%%" valueType="enum">
+        <Enumeration>
+          <Enum description="" descriptionKey="exclude_tooltip.LABEL" hasSubGroup="false" label="Exclude" labelKey="exclude.LABEL" mnemonic="X" mnemonicKey="exclude_mnemonic.VALUE" syntax="EXCLUDE" value="exclude"/>
+          <Enum description="Second radio button" descriptionKey="include_tooltip.LABEL" hasSubGroup="false" label="Include" labelKey="include.LABEL" mnemonic="I" mnemonicKey="include_mnemonic.VALUE" syntax="INCLUDE" value="include"/>
+        </Enumeration>
+      </Property>
+      <Property description="" descriptionKey="item_59_tooltip.LABEL" label="Values Not Found in Data and Empty Set Variables" labelKey="item_59.LABEL" name="item_59" syntax="%%ThisValue%%"/>
+      <Property defaultValue="false" description="Check to supplement values found in the data with values that have a value label and to include with other variables in sets" descriptionKey="other_tooltip.LABEL" label="Include in order in macros and set definitions" labelKey="other.LABEL" name="other" syntax="OTHER=YES±OTHER=NO" valueType="boolean"/>
+      <Property description="" descriptionKey="customattr_tooltip.LABEL" label="Custom Attribute for Category Order" labelKey="customattr.LABEL" name="customattr" syntax="%%ThisValue%%"/>
+      <Property defaultValue="false" description="" descriptionKey="item_34_tooltip.LABEL" label="Create custom attribute" labelKey="item_34.LABEL" name="item_34" syntax="CUSTOMATTR=YES±" valueType="boolean"/>
+      <Property defaultValue="ORDER" description="" descriptionKey="attrname_tooltip.LABEL" label="Name:" labelKey="attrname.LABEL" name="attrname" syntax="ATTRNAME=%%ThisValue%%" valueType="fieldName"/>
+    </Properties>
+    <SelectionPool id="source_fields" type="fields"/>
+    <UserInterface>
+      <Tabs>
+        <Tab helpLink="STATS_CATEGORY_ORDER.htm">
+          <PropertiesPanel>
+            <SourceFieldsBrowser copyFields="false" property="source_vars" selectionPool="source_fields">
+              <Layout columnWeight="1.0" fill="both" gridColumn="0" gridRow="0" gridWidth="1" rowWeight="1.0"/>
+            </SourceFieldsBrowser>
+            <MultiFieldChooserControl mnemonic="V" mnemonicKey="items_mnemonic.VALUE" property="items">
+              <Layout columnWeight="1.0" fill="both" gridColumn="2" gridRow="0" gridWidth="1" rowWeight="1.0"/>
+            </MultiFieldChooserControl>
+            <MultiFieldChooserControl mnemonic="S" mnemonicKey="specialvars_mnemonic.VALUE" property="specialvars" storage="[real integer date time string]">
+              <Layout columnWeight="1.0" fill="both" gridColumn="2" gridRow="2" gridWidth="1" rowWeight="1.0"/>
+            </MultiFieldChooserControl>
+            <TextBoxControl mnemonic="E" mnemonicKey="specialvalues_mnemonic.VALUE" property="specialvalues">
+              <Layout columnWeight="1.0" fill="horizontal" gridColumn="2" gridRow="1" gridWidth="1" rowWeight="0.0"/>
+            </TextBoxControl>
+            <RadioButtonGroupControl property="names" rows="3" useSubPanel="false">
+              <Layout columnWeight="1.0" fill="both" gridColumn="2" gridRow="4" gridWidth="1" rowWeight="1.0"/>
+              <RadioButton property="prefixrn">
+                <TextBoxControl property="item_564">
+                  <Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="0" gridWidth="1" leftIndent="16" rowWeight="1.0"/>
+                </TextBoxControl>
+              </RadioButton>
+              <RadioButton property="onamesrb">
+                <TextBoxControl property="item_565">
+                  <Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="0" gridWidth="1" leftIndent="16" rowWeight="1.0"/>
+                </TextBoxControl>
+              </RadioButton>
+              <RadioButton property="none"/>
+            </RadioButtonGroupControl>
+            <PropertiesSubPanel buttonLabel="Options..." buttonLabelKey="options.LABEL" dialogTitle="Options" dialogTitleKey="Optionsdlg.TITLE" helpLink="" mnemonic="O" mnemonicKey="options_mnemonic.VALUE">
+              <Layout columnWeight="0.0" fill="none" gridColumn="3" gridRow="0" gridWidth="1" rowWeight="0.0"/>
+              <PropertiesPanel>
+                <RadioButtonGroupControl property="order" rows="2" useSubPanel="false">
+                  <Layout columnWeight="1.0" fill="both" gridColumn="0" gridRow="0" gridWidth="1" rowWeight="1.0"/>
+                  <RadioButton property="descending"/>
+                  <RadioButton property="ascending"/>
+                </RadioButtonGroupControl>
+                <RadioButtonGroupControl property="categorylabels" rows="2" useSubPanel="false">
+                  <Layout columnWeight="1.0" fill="both" gridColumn="1" gridRow="1" gridWidth="1" rowWeight="1.0"/>
+                  <RadioButton property="varlabels"/>
+                  <RadioButton property="countedvalues"/>
+                </RadioButtonGroupControl>
+                <RadioButtonGroupControl property="specialsorder" rows="2" useSubPanel="false">
+                  <Layout columnWeight="1.0" fill="both" gridColumn="0" gridRow="1" gridWidth="1" rowWeight="1.0"/>
+                  <RadioButton property="after"/>
+                  <RadioButton property="before"/>
+                </RadioButtonGroupControl>
+                <RadioButtonGroupControl property="missingvalues" rows="2" useSubPanel="false">
+                  <Layout columnWeight="1.0" fill="both" gridColumn="1" gridRow="0" gridWidth="1" rowWeight="1.0"/>
+                  <RadioButton property="exclude"/>
+                  <RadioButton property="include"/>
+                </RadioButtonGroupControl>
+              </PropertiesPanel>
+            </PropertiesSubPanel>
+            <PropertiesPanel id="item_59" label="Values Not Found in Data and Empty Set Variables" labelKey="item_59.LABEL">
+              <Layout columnWeight="1.0" fill="both" gridColumn="2" gridRow="3" gridWidth="1" rowWeight="1.0"/>
+              <CheckBoxControl mnemonic="I" mnemonicKey="other_mnemonic.VALUE" property="other">
+                <Layout columnWeight="1.0" fill="none" gridColumn="0" gridRow="0" gridWidth="1" rowWeight="1.0"/>
+              </CheckBoxControl>
+            </PropertiesPanel>
+            <PropertiesPanel id="customattr" label="Custom Attribute for Category Order" labelKey="customattr.LABEL">
+              <Layout columnWeight="1.0" fill="both" gridColumn="2" gridRow="5" gridWidth="1" rowWeight="1.0"/>
+              <CheckBoxControl labelAbove="true" mnemonic="C" mnemonicKey="item_34_mnemonic.VALUE" property="item_34">
+                <Layout columnWeight="1.0" fill="none" gridColumn="0" gridRow="0" gridWidth="1" rowWeight="0.0"/>
+              </CheckBoxControl>
+              <TextBoxControl mnemonic="M" mnemonicKey="attrname_mnemonic.VALUE" property="attrname">
+                <Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="1" gridWidth="1" leftIndent="8" rowWeight="1.0"/>
+              </TextBoxControl>
+            </PropertiesPanel>
+            <StaticText text="This dialog was created using a later version of IBM SPSS Statistics\nand certain features may not function as intended." textKey="v17_warning.LABEL">
+              <Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="1" gridWidth="1" rowWeight="1.0"/>
+            </StaticText>
+          </PropertiesPanel>
+        </Tab>
+      </Tabs>
+    </UserInterface>
+  </Node>
+</Extension>

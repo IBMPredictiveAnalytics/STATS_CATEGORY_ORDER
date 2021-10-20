@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Création de macros ou de jeux de dichotomies multiples pour contrôler l'ordre des catégories</title>
+
+  <style type="text/css">
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+  --> 
+    </style>
+</head>
+
+<body>
+<h1>Création de macros ou de jeux de dichotomies multiples pour contrôler l'ordre des catégories</h1>
+Cette procédure crée des définitions de macros ou des jeux de dichotomies multiples à utiliser dans les tableaux personnalisés pour contrôler davantage l'ordre des catégories.  Pour les variables ordinaires (hors jeux de dichotomies multiples),
+elle peut également créer des attributs personnalisés contenant l'ordre qui peuvent être utilisés avec la programmabilité Python.
+
+<p>Cette procédure permet de traiter deux types d'entrée. Pour une variable ordinaire, elle crée une définition de macro qui affiche les catégories triées par effectif avec la possibilité de déplacer les valeurs sélectionnées vers le haut ou vers le bas de la liste.  L'utilisation typique consiste à déplacer une catégorie "autre" vers le bas.  La macro générée peut être utilisée dans la sous-commande CTABLES CATEGORIES pour indiquer l'ordre.  Avec un attribut personnalisé, la syntaxe de la sous-commande peut être générée à l'aide d'un code Python. </p>
+<p>Le second type d'entrée concerne un ou plusieurs jeux de dichotomies multiples.  Un jeu de dichotomies multiples consiste en un groupe de variables pour lesquelles les choix ou attributs ont deux valeurs possibles de type "oui" (valeur comptée) ou "non".  La procédure crée un nouveau jeu de dichotomies multiples composé de la même variable et éventuellement d'autres variables similaires à celles de la liste triée par effectif.  Lorsque vous spécifiez plusieurs variables spéciales, généralement mais pas forcément incluses dans la définition de l'ensemble, vous pouvez déplacer ces variables vers le haut ou vers le bas de la liste.  La mise en tableau des nouveaux jeux avec les tableaux personnalisés permet de dresser la liste des variables dans l'ordre généré par cette procédure.</p>
+<p>
+<p class="bullet">Les variables régulières et les jeux de dichotomies peuvent tous deux être traités simultanément, selon leurs propres spécifications. </p>
+<p class="bullet">Cette procédure est particulièrement utile pour CTABLES, mais elle peut également l'être pour les jeux de dichotomies multiples dans GGRAPH. </p>
+<p class="bullet">La procédure ne peut pas être utilisée avec les jeux de catégories multiples, mais la commande d'extension STATS MCSET CONVERT permet de convertir un jeu de catégories multiples en jeux de dichotomies multiples. </p>
+
+<p><span class="runinhead">Variables et jeux de dichotomies multiples :</span>
+Sélectionnez les variables et les jeux de dichotomies multiples à traiter.  Une macro est créée pour chaque variable sélectionnée ; un jeu de dichotomies multiples est créé pour chaque jeu sélectionné.</p>
+<p class="bullet">Toutes les variables sélectionnées directement ou en tant que membres du jeu possèdent le même type fondamental (numérique ou chaîne). </p>
+</p>
+<p><span class="runinhead">Valeurs spéciales :</span>
+Entrez les valeurs spéciales pour les variables ordinaires.  Séparez les valeurs par un espace.  Les valeurs de chaîne doivent être placées entre guillemets si elles contiennent un espace.  Les variables ou valeurs spéciales seront extraites du tri en fonction des spécifications dans Options.</p>
+<p class="bullet">Ces valeurs n'ont aucune incidence sur les jeux de dichotomies multiples.
+</p>
+
+
+<p><span class="runinhead">Variables spéciales :</span> Sélectionnez les variables qui contiennent des valeurs spéciales (par exemple, la variable "autre" pour les jeux de dichotomies multiples).  Ces variables sont retirées de l'ordre de tri en fonction des spécifications dans Options lorsque les nouveaux jeux sont définis.</p>
+<p class="bullet">Ces valeurs n'ont aucune incidence sur les variables ordinaires.
+</p>
+<p><span class="runinhead">Valeurs introuvables dans les données et les variables vides :</span>
+Pour les variables ordinaires, cochez la case pour ajouter les valeurs étiquetées qui ne se trouvent pas dans les données aux résultats avec une valeur zéro.  
+Si les valeurs manquantes sont exclues, les valeurs manquantes étiquetées sont omises.</p>
+<p>Pour les jeux, les variables de composantes dont la valeur est zéro sont regroupées avec les autres variables définies.  Cela ne fait de différence que si des variables spéciales sont définies.</p>
+<p><span class="runinhead">Macro ou noms de jeux de dichotomies multiples :</span> Cochez cette case pour définir le nom des éléments créés.  Si vous saisissez un préfixe, le nom de la sortie se présentera sous la forme<br>
+prefix_outputname<br>
+Vous pouvez également entrer la liste des noms de sortie.
+Vous pouvez entrer autant de noms qu'il y a de variables et de jeux sélectionnés.
+Pour une définition de macro, le signe "!" est ajouté en préfixe au nom.
+Pour un jeu de dichotomies multiples, le "$" est ajouté en préfixe au nom.</p>
+<p class="bullet">Une variable existante ou un jeu comportant le même nom qu'une sortie sera remplacé(e), et une erreur se produira si le type de la variable existante n'est pas cohérent avec celui de la nouvelle sortie.</p>
+<p>Si Aucun est sélectionné, spécifiez un attribut personnalisé dans la zone Attribut personnalisé.
+</p>
+
+<p><span class="runinhead">Attribut personnalisé de l'ordre des catégories</span> : Cochez
+cette case pour créer un attribut personnalisé pour chaque variable qui spécifie l'ordre.
+Cet attribut peut être utilisé dans un code Python pour générer la syntaxe CTABLES appropriée.
+Les attributs personnalisés peuvent être affichés dans la Vue des variables de l'éditeur de données et ailleurs.
+Ils sont sauvegardés avec le jeu de données, ce qui évite de refaire le calcul dans une session future, à moins que les données n'aient été modifiées. </p>
+<p><span class="runinhead">Nom</span> : Vous pouvez spécifier le nom de l'attribut personnalisé dans ce contrôle. </p>
+<p>Voici un exemple utilisant l'attribut personnalisé avec Python</p>
+
+<p><span class="code">
+STATS CATEGORY ORDER items=jobcat customattr=yes.</br>
+begin program.</br>
+import spss, spssaux</br>
+</br>
+order = spssaux.VariableDict()['jobcat'].Attributes["ORDER"]</br>
+cmd="""ctables /table jobcat</br>
+/categories variables=jobcat [%s]""" % order</br>
+spss.Submit(cmd)</br>
+end program.</br>
+</span>
+<h2>Options</h2>
+
+<p><span class="runinhead">Ordre :</span> Sélectionnez l'ordre croissant ou décroissant.  Les catégories ou les variables définies seront affichées en fonction de leur nombre dans l'ordre indiqué, à l'exception des valeurs spéciales.</p>
+
+<p><span class="runinhead">Emplacement des valeurs spéciales :</span> Toutes les valeurs ou variables spéciales sont déplacées vers la fin ou vers le début de la liste selon leur spécification.
+</p>
+<p><span class="runinhead">Valeurs utilisateur manquantes :</span> Choisissez si les valeurs manquantes définies par l'utilisateur dans les données ou les libellés doivent être comptabilisées ou non.  
+Ce paramètre s'applique à chaque variable individuellement.  Si une valeur spéciale est également une valeur manquante, elle sera incluse indépendamment du paramètre.  Les valeurs système manquantes sont toujours ignorées. </p>
+
+<p><span class="runinhead">Libellés des catégories :</span> Pour les jeux de dichotomies multiples uniquement, choisissez si les libellés de variables des variables définies ou le libellé des valeurs comptées doivent être utilisés pour étiqueter le jeu.  Ce paramètre est généralement le même que celui de la spécification utilisée lors de la création du jeu d'entrée.</p>
+
+<h2>Fonctions supplémentaires</h2>
+<p>
+Cette boîte de dialogue génère une syntaxe pour la commande d'extension STATS CATEGORY ORDER. Pour afficher l'aide sur la syntaxe de cette commande, exécutez la syntaxe suivante :
+</p>
+<p class="codeblock">STATS CATEGORY ORDER /HELP.</p>
+<p>A l'aide de la syntaxe, vous pouvez créer une macro qui répertorie un ensemble de variables dans l'ordre de la fréquence d'un ensemble de valeurs spécifiées.</p>
+
+<h2>Conditions requises</h2>
+Cette commande requiert Python Essentials.
+Vous pouvez le télécharger depuis le site Web de la communauté SPSS à l'adresse www.ibm.com/developerworks/spssdevcentral
+ou à partir de vos supports d'installation.</p>
+
+<p style="font-size:80%;">Copyright SPSS Inc. 1989,2021</p>

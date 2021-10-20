@@ -1,174 +1,117 @@
-#/***********************************************************************
-# * Licensed Materials - Property of IBM 
-# *
-# * IBM SPSS Products: Statistics Common
-# *
-# * (C) Copyright IBM Corp. 1989, 2014
-# *
-# * US Government Users Restricted Rights - Use, duplication or disclosure
-# * restricted by GSA ADP Schedule Contract with IBM Corp. 
-# ************************************************************************/
-
-# NLS_ENCODING=UTF-8
-# IBMUPYTH
-
-
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR ORGANIZATION
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Translations template for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
+
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-11-27 16:39+China Standard Time\n"
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-10-11 00:33-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
-"Generated-By: pygettext.py 1.5\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Globalization Pipeline\n"
 
-
-#: STATS_CATEGORY_ORDER.py:131
 msgid "Either a  prefix or a set of macro or MR set names must be specified"
 msgstr ""
-"Immettere un prefisso o è necessario specificare i nomi di insiemi RM o di macro"
+"Immettere un prefisso o è necessario specificare i nomi di insiemi RM o di "
 
-#: STATS_CATEGORY_ORDER.py:135
-msgid "The number of macro or MR set names specified is different from the number of items"
+msgid ""
+"The number of macro or MR set names specified is different from the number of "
 msgstr ""
-"Il numero di nomi di insiemi di RM o di macro specificato è diverso dal numero di elementi"
+"Il numero di nomi di insiemi di RM o di macro specificato è diverso dal numero"
+" di elementi"
 
-#: STATS_CATEGORY_ORDER.py:146
 msgid "Items to process must be either all numeric or all string"
-msgstr ""
-"Gli elementi da elaborare devono essere tutti numerici o tutti stringa"
+msgstr "Gli elementi da elaborare devono essere tutti numerici o tutti stringa"
 
-#: STATS_CATEGORY_ORDER.py:151
 msgid "A nonnumeric special value was given for numeric variables"
 msgstr ""
 "È stato fornito un valore speciale non numerico per variabili numeriche"
 
-#: STATS_CATEGORY_ORDER.py:168
 msgid "Name"
-msgstr ""
-"Nome"
+msgstr "Nome"
 
-#: STATS_CATEGORY_ORDER.py:169
 msgid "Definition"
-msgstr ""
-"Definizione"
+msgstr "Definizione"
 
-#: STATS_CATEGORY_ORDER.py:184
 msgid "ITEMS and NAMES cannot be used with COUNTORDERING specifications."
 msgstr ""
 "ITEMS e NAMES non possono essere utilizzati con le specifiche COUNTORDERING. "
 
-#: STATS_CATEGORY_ORDER.py:186
-msgid "Values to count must and a macroname must be specified when using COUNTORDERING specifications."
+msgid ""
+"Values to count must and a macroname must be specified when using "
+"COUNTORDERING specifications."
 msgstr ""
-"È necessario specificare i valori da contare e un nome macro quando si utilizzano le specifiche COUNTORDERING. "
+"È necessario specificare i valori da contare e un nome macro quando si "
+"utilizzano le specifiche COUNTORDERING. "
 
-#: STATS_CATEGORY_ORDER.py:241
 msgid "The weight variable cannot be included as a variable."
-msgstr ""
-"La variabile peso non può essere inclusa come una variabile."
+msgstr "La variabile peso non può essere inclusa come una variabile."
 
-#: STATS_CATEGORY_ORDER.py:316
-msgid "The specified set is a multiple category set.  Only multiple dichotomy sets can be used: %s"
+msgid ""
+"The specified set is a multiple category set.  Only multiple dichotomy sets "
+"can be used: %s"
 msgstr ""
-"L'insieme specificato è un insieme a categorie multiple (CM). È possibile utilizzare solo insiemi di dicotomie multiple (DM): %s"
+"L'insieme specificato è un insieme a categorie multiple (CM). È possibile "
+"utilizzare solo insiemi di dicotomie multiple (DM): %s"
 
-#: STATS_CATEGORY_ORDER.py:319
 msgid "The weight variable cannot be included in an MR set."
-msgstr ""
-"La variabile peso non può essere inclusa in un insieme RM."
+msgstr "La variabile peso non può essere inclusa in un insieme RM."
 
-#: STATS_CATEGORY_ORDER.py:376
 msgid "Variable must all be of the same type"
-msgstr ""
-"Tutte le variabili devono essere dello stesso tipo "
+msgstr "Tutte le variabili devono essere dello stesso tipo "
 
-#: STATS_CATEGORY_ORDER.py:382
 msgid "A non-numeric value to count was specified for a numeric variable"
 msgstr ""
-"Per una variabile numerica è stato specificato un valore non numerico da contare"
+"Per una variabile numerica è stato specificato un valore non numerico da "
 
-#: STATS_CATEGORY_ORDER.py:415
 msgid "No valid cases were found"
-msgstr ""
-"Non sono stati trovati casi validi"
+msgstr "Non sono stati trovati casi validi"
 
-#: STATS_CATEGORY_ORDER.py:426
 msgid "No variables meet the count or percentage threshold"
-msgstr ""
-"Nessuna variabile rispetta la soglia percentuale o conteggio"
+msgstr "Nessuna variabile rispetta la soglia percentuale o conteggio"
 
-#: STATS_CATEGORY_ORDER.py:438
 msgid "Minimum count: < %s"
-msgstr ""
-"Conteggio minimo: < %s"
+msgstr "Conteggio minimo: < %s"
 
-#: STATS_CATEGORY_ORDER.py:438
 msgid "Minimum percentage: < %s"
-msgstr ""
-"Percentuale minima: < %s"
+msgstr "Percentuale minima: < %s"
 
-#: STATS_CATEGORY_ORDER.py:440
 msgid "Maximum count: >= %s"
-msgstr ""
-"Conteggio massimo: >= %s"
+msgstr "Conteggio massimo: >= %s"
 
-#: STATS_CATEGORY_ORDER.py:442
 msgid "Maximum percentage: >= %s"
-msgstr ""
-"Percentuale massima: >= %s"
+msgstr "Percentuale massima: >= %s"
 
-#: STATS_CATEGORY_ORDER.py:443
 msgid "Variables excluded: %s"
-msgstr ""
-"Variabili escluse: %s"
+msgstr "Variabili escluse: %s"
 
-#: STATS_CATEGORY_ORDER.py:451
 msgid "Macro Definition: %s"
-msgstr ""
-"Definizione macro: %s"
+msgstr "Definizione macro: %s"
 
-#: STATS_CATEGORY_ORDER.py:459
 msgid "Variables"
-msgstr ""
-"Variabili"
+msgstr "Variabili"
 
-#: STATS_CATEGORY_ORDER.py:461 STATS_CATEGORY_ORDER.py:477
 msgid "Counts"
-msgstr ""
-"Conteggi"
+msgstr "Conteggi"
 
-#: STATS_CATEGORY_ORDER.py:466
 msgid "Excluded Variables for Macro Definition: %s"
-msgstr ""
-"Variabili escluse per definizione macro: %s"
+msgstr "Variabili escluse per definizione macro: %s"
 
-#: STATS_CATEGORY_ORDER.py:475
 msgid "Excluded Variables"
-msgstr ""
-"Variabili escluse"
+msgstr "Variabili escluse"
 
-#: STATS_CATEGORY_ORDER.py:633
 msgid "Variable not found: %s"
-msgstr ""
-"Variabile non trovata: %s"
+msgstr "Variabile non trovata: %s"
 
-#: STATS_CATEGORY_ORDER.py:644
 msgid "MR set not found: %s"
-msgstr ""
-"Insieme RM non trovato: %s"
+msgstr "Insieme RM non trovato: %s"
 
-#: STATS_CATEGORY_ORDER.py:704
 msgid "---"
-msgstr ""
-"---"
-
-
-
+msgstr "---"
