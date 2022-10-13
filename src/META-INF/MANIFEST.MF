@@ -1,4 +1,5 @@
 Name: STATS CATEGORY ORDER
+Display-Name: Multiple Dichotomy Category Order
 Dialog-Specs: STATS_CATEGORY_ORDER.spd
 Command-Specs: STATS_CATEGORY_ORDER.xml
 Code-Files: STATS_CATEGORY_ORDER.py
